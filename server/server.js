@@ -5,10 +5,11 @@ const path = require('path');
 
 const app = express();
 
+require('./db/config');
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 
 app.get('/test', (req, res) => {
   res.json({message: 'hi'});

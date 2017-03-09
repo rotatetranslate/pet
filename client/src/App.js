@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Link } from 'react-router';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: 'World'
+    }
+  }
   componentWillMount() {
     fetch('/test')
     .then(res => res.json())
@@ -12,7 +18,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        Hello World
+        <h1>Hello {this.state.user}</h1>
+        <ul>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/pen">Pen</Link></li>
+        </ul>
       </div>
     );
   }
