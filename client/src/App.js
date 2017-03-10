@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      user: 'World'
+      user: null
     }
+    this.login = this.login.bind(this);
   }
   componentWillMount() {
     fetch('/test')
@@ -18,7 +20,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hello {this.state.user}</h1>
+        <h1>Hello World</h1>
+        <LoginForm login={this.login} />
         <ul>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/pen">Pen</Link></li>
@@ -26,6 +29,11 @@ class App extends Component {
       </div>
     );
   }
+
+  login(user) {
+    console.log(user);
+  }
+  
 }
 
 export default App;

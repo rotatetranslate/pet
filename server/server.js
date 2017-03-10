@@ -15,5 +15,10 @@ app.get('/test', (req, res) => {
   res.json({message: 'hi'});
 });
 
+app.post('/login', (req, res) => {
+  console.log('bod', req.body);
+  res.json({message: 'received'})
+})
+
 const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`app listening on ${port}`));
