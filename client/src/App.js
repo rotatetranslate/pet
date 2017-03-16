@@ -11,12 +11,7 @@ class App extends Component {
     }
     this.login = this.login.bind(this);
   }
-  componentWillMount() {
-    fetch('/test')
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-  }
+
   render() {
     return (
       <div>
@@ -33,7 +28,7 @@ class App extends Component {
   login(user) {
     console.log(user);
   }
-  
+
 }
 
 export default App;

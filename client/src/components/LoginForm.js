@@ -17,14 +17,14 @@ class LoginForm extends Component {
       }
     }
     this.submitLoginForm = this.submitLoginForm.bind(this);
-    this.updateInfo = this.updateInfo.bind(this);
+    this.updateUserInfo = this.updateUserInfo.bind(this);
   }
   render() {
     return (
       <form onSubmit={this.submitLoginForm}>
         <h2>Log In</h2>
-        Username: <input name="username" type="text" placeholder="Username" onChange={this.updateInfo} /> <br/>
-        Password: <input name="password" type="password" placeholder="Password" onChange={this.updateInfo} /> <br/>
+        Username: <input name="username" type="text" placeholder="Username" onChange={this.updateUserInfo} /> <br/>
+        Password: <input name="password" type="password" placeholder="Password" onChange={this.updateUserInfo} /> <br/>
         <button>Log In</button> <br/>
         Don't have an account? Create One
       </form>
@@ -34,8 +34,7 @@ class LoginForm extends Component {
   submitLoginForm(e) {
     e.preventDefault();
     console.log('submitting');
-    console.log(this.state.user)
-    fetch('/login', {
+    fetch('auth/login/', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -48,7 +47,7 @@ class LoginForm extends Component {
     .catch(err => console.log(err))
   }
 
-  updateInfo(e) {
+  updateUserInfo(e) {
     const user = this.state.user;
     const field = e.target.name;
     user[field] = e.target.value;

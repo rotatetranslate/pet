@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
+const passport = require('passport');
 
 const app = express();
 
@@ -11,14 +13,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/test', (req, res) => {
-  res.json({message: 'hi'});
-});
+app.use(passport.initialize());
 
-app.post('/login', (req, res) => {
-  console.log('bod', req.body);
-  res.json({message: 'received'})
-})
+const authRoutes = require('./routes/auth');
+
+app.use('/auth', authRoutes);
 
 const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`app listening on ${port}`));
