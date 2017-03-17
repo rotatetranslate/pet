@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 
-// const Login = () => {
-//   return (
-//     <div>
-//       Login
-//     </div>
-//   )
-// }
+
 class LoginForm extends Component {
   constructor() {
     super();

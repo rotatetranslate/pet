@@ -16,7 +16,7 @@
     "passport-local": "^1.0.0"
   },
   "scripts": {
-    "start": "node ./db/seed.js && nodemon server.js",
+    "start": "nodemon server.js",
     "seed": "node ./db/seed.js"
   }
 }
