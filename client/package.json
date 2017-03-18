@@ -7,6 +7,10 @@
     "react-scripts": "0.9.4"
   },
   "dependencies": {
+    "aframe": "^0.5.0",
+    "aframe-animation-component": "^3.2.3",
+    "aframe-react": "^3.5.0",
+    "aframe-text-geometry-component": "^0.5.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2"

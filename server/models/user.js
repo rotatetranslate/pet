@@ -26,11 +26,11 @@ UserSchema.methods.comparePassword = function(password, cb) {
   return bcrypt.compare(password, user.password, cb);
 }
 
-// UserSchema.methods.pets = function(cb) {
-//   mongoose.model('Feel').find({owner: this._id}, function(err, feels) {
-//     cb(err, feels);
-//   });
-// };
+UserSchema.methods.pets = function(cb) {
+  mongoose.model('Pet').find({owner: this._id}, function(err, pets) {
+    cb(err, pets);
+  });
+};
 
 const User = mongoose.model('User', UserSchema);
 

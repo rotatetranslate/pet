@@ -35,8 +35,8 @@ Pet.remove({}, err => {
       ];
 
       Pet.create(pets, (err, pets) => {
+        if (err) console.log(err);
         console.log(pets);
-        err ? console.log(err) :
         console.log(`db seeded with ${users.length} users and ${pets.length} pets`);
         process.exit();
       });

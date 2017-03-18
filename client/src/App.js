@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './App.css';
 import LoginForm from './components/LoginForm';
+import PetScene from './components/PetScene';
 
 class App extends Component {
   constructor() {
@@ -13,20 +14,24 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return this.state.user ?
+    <PetScene user={this.state.user}/> :
+    (
       <div>
-        <h1>Hello World</h1>
         <LoginForm login={this.login} />
-        <ul>
+        {/* <ul>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/pen">Pen</Link></li>
-        </ul>
+        </ul> */}
       </div>
-    );
+    )
   }
 
-  login(user) {
-    console.log(user);
+  login(loginData) {
+    sessionStorage.setItem('token', loginData.token)
+    this.setState({
+      user: loginData.user
+    });
   }
 
 }

@@ -37,7 +37,7 @@ class LoginForm extends Component {
       body: JSON.stringify(this.state.user)
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => this.props.login(data))
     .catch(err => console.log(err))
   }
 

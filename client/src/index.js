@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './App';
 import LoginForm from './components/LoginForm'
-import Pen from './components/Pen'
+import PetScene from './components/PetScene'
 import './index.css';
 
 const router = (
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}/>
-    <Route path="/login" component={LoginForm}/>
-    <Route path="/pen" component={Pen}/>
+    {/* <Route path="/login" component={LoginForm}/>
+    <Route path="/petscene" component={PetScene}/> */}
   </Router>
 )
 

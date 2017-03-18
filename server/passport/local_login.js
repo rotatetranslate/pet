@@ -14,13 +14,18 @@ module.exports = function(passport) {
         if (!user) return done(null, false, {message: 'Incorrect username.'});
 
         return user.comparePassword(password, (err, match) => {
-          if (err || !match) return done(err);
+          if (err || !match) return done(err, false, {message: 'Incorrect password.'});
 
-          const payload = {id: user._id};
-          const token = jwt.sign(payload, jwtSecret);
-          const data = {name: user.username};
+          user.pets((err, pets) => {
+            const payload = {id: user._id};
+            const token = jwt.sign(payload, jwtSecret);
+            const data = {
+              name: user.username,
+              pets: pets
+            };
 
-          return done(null, token, data)
+            return done(null, token, data)
+          })
         })
       })
     }
