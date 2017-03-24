@@ -1,14 +1,25 @@
 import 'aframe';
 import 'aframe-text-geometry-component';
-import {Entity} from 'aframe-react';
 import React, { Component } from 'react';
+import {Entity} from 'aframe-react';
 
-export default props => {
+export default Text = (props) => {
   return (
     <Entity
-      text-geometry={{value: `Hello ${props.user.name}`}} position={[0, 1, -5]} />
+      text-geometry={{value: props.text, font: props.font}} position={props.position} />
   )
 }
 
-
-// font: '../assets/fonts/knxt.bdf'}} position={[0, 1, -5]}/>
+// class Text extends Component {
+//
+//   render() {
+//     return (
+//       <Entity
+//         text-geometry={{value: this.props.text}} position={this.props.position}
+//         // ref={Entity => Entity.props['text-geometry'].font = font } />
+//         ref={Entity => console.log(Entity) } />
+//     )
+//   }
+// }
+//
+// export default Text;

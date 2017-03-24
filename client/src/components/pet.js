@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Entity} from 'aframe-react';
 
 class Pet extends Component {
   constructor() {
