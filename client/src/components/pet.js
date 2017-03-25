@@ -7,7 +7,10 @@ class Pet extends Component {
   }
   render() {
     return (
-      <div>Pet</div>
+      <Entity
+        material={{color: '#4CC3D9'}}
+        geometry={{primitive: 'sphere', radius: 1}}
+        position={[-1, .5, -5]} />
     )
   }
 }

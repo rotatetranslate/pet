@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Entity} from 'aframe-react';
+import Action from './Action';
 
 class PetActions extends Component {
   constructor() {
@@ -8,10 +9,11 @@ class PetActions extends Component {
   }
   render() {
     return (
-      <div>
-        PetActions
-        <Entity geometry='primitive: box; depth: 0.2; height: 0.2; width: 0.2' position='0 -0.5 -3'/>
-      </div>
+      <Entity>
+        <Action position={[-1, 5, -5]} action='feed' />
+        <Action position={[2, 5, -5]} action='play' />
+        <Action position={[5, 5, -5]} action='clean' />
+      </Entity>
     )
   }
 }
