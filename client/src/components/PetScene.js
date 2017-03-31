@@ -19,7 +19,7 @@ class PetScene extends Component {
     return (
       <Scene>
         <Camera>
-          <a-cursor>    
+          <a-cursor>
           </a-cursor>
         </Camera>
         <Text
@@ -28,8 +28,8 @@ class PetScene extends Component {
           // font={font}
           font='bubble1.json'
         />
-        <Pet pet={this.props.user.pets[0]} />
-        <PetActions />
+        <Pet pet={this.props.pet} />
+        <PetActions feed={this.props.feed}/>
       </Scene>
     )
   }

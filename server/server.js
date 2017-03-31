@@ -16,8 +16,10 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 const authRoutes = require('./routes/auth');
+const petRoutes = require('./routes/pet');
 
 app.use('/auth', authRoutes);
+app.use('/pet', petRoutes);
 
 const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`app listening on ${port}`));

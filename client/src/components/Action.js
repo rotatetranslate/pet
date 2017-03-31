@@ -7,7 +7,9 @@ const Action = (props) => {
       geometry={{primitive: 'box', depth: .5, height: 2, width: 1}}
       material={{color: '#FFC65D'}}
       position={props.position}
-      onClick={() => console.log(`clicked ${props.action}`)} />
+      onClick={() => props.feed()} 
+    />
+
   )
 }
 
