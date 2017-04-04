@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../App.css';
 
 class LoginForm extends Component {
   constructor() {
@@ -27,7 +27,6 @@ class LoginForm extends Component {
 
   submitLoginForm(e) {
     e.preventDefault();
-    console.log('submitting');
     fetch('auth/login/', {
       method: 'post',
       headers: {

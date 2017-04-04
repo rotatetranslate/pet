@@ -30,6 +30,10 @@ Pet.remove({}, err => {
         },
         {
           owner: users[1]._id,
+          name: 'Boolean'
+        },
+        {
+          owner: users[1]._id,
           name: 'Ivan'
         }
       ];
