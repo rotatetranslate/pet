@@ -6,15 +6,17 @@ import LoginForm from './components/LoginForm'
 import PetScene from './components/PetScene'
 import './index.css';
 
-const router = (
-  <Router history={browserHistory}>
-    <Route path="/" component={App}/>
-    {/* <Route path="/login" component={LoginForm}/>
-    <Route path="/petscene" component={PetScene}/> */}
-  </Router>
-)
+import MyRouter from './components/Router';
+
+// const router = (
+//   <Router history={browserHistory}>
+//     <Route path="/" component={App}/>
+//     {/* <Route path="/login" component={LoginForm}/>
+//     <Route path="/petscene" component={PetScene}/> */}
+//   </Router>
+// )
 
 ReactDOM.render(
-  router,
+  <MyRouter />,
   document.getElementById('root')
 );

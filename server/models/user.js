@@ -27,7 +27,7 @@ UserSchema.methods.comparePassword = function(password, cb) {
 }
 
 UserSchema.methods.pets = function(cb) {
-  mongoose.model('Pet').find({owner: this._id}, function(err, pets) {
+  mongoose.model('Pet').find({owner: this._id}, (err, pets) => {
     cb(err, pets);
   });
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import '../App.css';
 
 class LoginForm extends Component {
@@ -12,16 +13,23 @@ class LoginForm extends Component {
     }
     this.submitLoginForm = this.submitLoginForm.bind(this);
     this.updateUserInfo = this.updateUserInfo.bind(this);
+    this.login = this.login.bind(this);
   }
   render() {
+    if (sessionStorage.getItem('petToken') != null) {
+      return <Redirect to="/"/>
+    }
     return (
-      <form onSubmit={this.submitLoginForm}>
-        <h2>Log In</h2>
-        Username: <input name="username" type="text" placeholder="Username" onChange={this.updateUserInfo} /> <br/>
-        Password: <input name="password" type="password" placeholder="Password" onChange={this.updateUserInfo} /> <br/>
-        <button>Log In</button> <br/>
-        Don't have an account? Create One
-      </form>
+      <div>
+        VIRTUA PET
+        <form method="POST" onSubmit={this.submitLoginForm}>
+          <h2>Log In</h2>
+          Username: <input name="username" type="text" placeholder="Username" onChange={this.updateUserInfo} /> <br/>
+          Password: <input name="password" type="password" placeholder="Password" onChange={this.updateUserInfo} /> <br/>
+          <button>Log In</button> <br/>
+          Don't have an account? Create One
+        </form>
+      </div>
     )
   }
 
@@ -36,8 +44,16 @@ class LoginForm extends Component {
       body: JSON.stringify(this.state.user)
     })
     .then(res => res.json())
-    .then(data => this.props.login(data))
+    .then(data => this.login(data))
     .catch(err => console.log(err))
+  }
+
+  login(loginData) {
+    console.log(loginData)
+    sessionStorage.setItem('petToken', loginData.token);
+    this.setState({
+      user: loginData.user
+    });
   }
 
   updateUserInfo(e) {

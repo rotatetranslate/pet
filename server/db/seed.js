@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Pet = require('../models/pet');
 const User = require('../models/user');
 
-const users = [
+let users = [
   {
     username: 'seededuser',
     password: 'abc123'
@@ -23,7 +23,7 @@ Pet.remove({}, err => {
     User.create(users, (err, users) => {
       console.log(users);
 
-      const pets = [
+      let pets = [
         {
           owner: users[0]._id,
           name: 'Tamago'

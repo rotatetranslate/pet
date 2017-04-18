@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 // import './App.css';
 import update from 'immutability-helper';
-import { randFloat, randInt } from './helpers';
+import { randFloat, randInt, getPets } from './helpers';
 
 import LoginForm from './components/LoginForm';
 import PetScene from './components/PetScene';
@@ -15,51 +15,48 @@ class App extends Component {
       user: null,
       pet: null
     }
-    this.login = this.login.bind(this);
+    // this.login = this.login.bind(this);
+    // this.selectPet = this.selectPet.bind(this);
     this.feed = this.feed.bind(this);
-    this.selectPet = this.selectPet.bind(this);
     this.updatePet = this.updatePet.bind(this);
   }
 
-  // render() {
-  //   return this.state.user ?
-  //   <PetScene
-  //     user={this.state.user}
-  //     pet={this.state.pet}
-  //     feed={this.feed}/> :
-  //
-  //     <div>
-  //       <LoginForm login={this.login}/>
-  //       {/* <ul>
-  //         <li><Link to="/login">Login</Link></li>
-  //         <li><Link to="/pen">Pen</Link></li>
-  //       </ul> */}
-  //     </div>
-  //
-  // }
+  componentDidMount() {
+    
+  }
 
   render() {
-    if (this.state.user && this.state.pet) {
-      var html = <PetScene user={this.state.user} pet={this.state.pet} />
-    } else if (this.state.user) {
-      var html = <SelectPetForm pets={this.state.user.pets} selectPet={this.selectPet}/>
-    } else {
-      var html = <LoginForm login={this.login} />
-    }
-    return html;
+    return (
+      <PetScene
+        user={this.state.user}
+        pet={this.state.pet}
+        feed={this.feed} />
+    )
   }
 
-  login(loginData) {
-    sessionStorage.setItem('token', loginData.token);
-    this.setState({
-      user: loginData.user
-    });
-  }
+  // render() {
+  //   if (this.state.user && this.state.pet) {
+  //     var html = <PetScene user={this.state.user} pet={this.state.pet} />
+  //   } else if (this.state.user) {
+  //     var html = <SelectPetForm pets={this.state.user.pets} selectPet={this.selectPet}/>
+  //   } else {
+  //     var html = <LoginForm login={this.login} />
+  //   }
+  //   return html;
+  // }
 
-  selectPet(pet) {
-    console.log(pet);
-    this.setState({pet: pet})
-  }
+  // login(loginData) {
+  //   console.log(loginData)
+  //   sessionStorage.setItem('petToken', loginData.token);
+  //   this.setState({
+  //     user: loginData.user
+  //   });
+  // }
+
+  // selectPet(pet) {
+  //   console.log(pet);
+  //   this.setState({pet: pet})
+  // }
 
   feed() {
     if (this.state.pet.fullness < 4) {

@@ -6,7 +6,7 @@ const User = require('../models/user');
 
 
 // find or create
-module.exports = function(passport) {
+module.exports = passport => {
   passport.use('login', new localStrategy(
     (username, password, done) => {
       User.findOne({username: username}, (err, user) => {
@@ -17,9 +17,9 @@ module.exports = function(passport) {
           if (err || !match) return done(err, false, {message: 'Incorrect password.'});
 
           user.pets((err, pets) => {
-            const payload = {id: user._id};
-            const token = jwt.sign(payload, jwtSecret);
-            const data = {
+            let payload = {id: user._id};
+            let token = jwt.sign(payload, jwtSecret);
+            let data = {
               name: user.username,
               pets: pets
             };
