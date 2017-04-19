@@ -48,11 +48,10 @@ class LoginForm extends Component {
     .catch(err => console.log(err))
   }
 
-  login(loginData) {
-    console.log(loginData)
-    sessionStorage.setItem('petToken', loginData.token);
+  login({token}) {
+    sessionStorage.setItem('petToken', token);
     this.setState({
-      user: loginData.user
+      user: token
     });
   }
 

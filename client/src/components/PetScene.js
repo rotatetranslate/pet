@@ -2,7 +2,7 @@ import 'aframe';
 import 'aframe-text-geometry-component';
 
 import React, { Component } from 'react';
-import {Scene} from 'aframe-react';
+import { Scene } from 'aframe-react';
 import Text from './Text';
 import Pet from './Pet';
 import PetActions from './PetActions';
@@ -23,13 +23,15 @@ class PetScene extends Component {
           </a-cursor>
         </Camera>
         <Text
-          text={`Hello ${this.props.user.name}`}
+          text={`Hello ${this.props.user}`}
           position={[0, 1, -5]}
           // font={font}
-          font='bubble1.json'
+          // font='bubble1.json'
         />
         <Pet pet={this.props.pet} />
-        <PetActions feed={this.props.feed}/>
+        <PetActions
+          feed={this.props.feed}
+          play={this.props.play}/>
       </Scene>
     )
   }

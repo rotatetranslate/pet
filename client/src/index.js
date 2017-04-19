@@ -8,14 +8,6 @@ import './index.css';
 
 import MyRouter from './components/Router';
 
-// const router = (
-//   <Router history={browserHistory}>
-//     <Route path="/" component={App}/>
-//     {/* <Route path="/login" component={LoginForm}/>
-//     <Route path="/petscene" component={PetScene}/> */}
-//   </Router>
-// )
-
 ReactDOM.render(
   <MyRouter />,
   document.getElementById('root')

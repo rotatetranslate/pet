@@ -6,9 +6,7 @@ const PetOverview = ({pet}) => {
     <div>
       Name: {pet.name}
       <Link to={`/pets/${pet._id}`}>Select</Link>
-      {/* <button onClick={() => props.selectPet(props.pet)}>Select</button> */}
     </div>
-
   )
 }
 

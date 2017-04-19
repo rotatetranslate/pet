@@ -15,7 +15,7 @@ function getPetsFromJwt(cb) {
     }
   })
   .then(res => res.json())
-  .then(pets => cb(pets))
+  .then(data => cb(data))
   .catch(err => console.log(err))
 }
 

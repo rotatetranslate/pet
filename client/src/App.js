@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-// import './App.css';
 import update from 'immutability-helper';
 import { randFloat, randInt, getPets } from './helpers';
 
@@ -15,65 +14,64 @@ class App extends Component {
       user: null,
       pet: null
     }
-    // this.login = this.login.bind(this);
-    // this.selectPet = this.selectPet.bind(this);
     this.feed = this.feed.bind(this);
+    this.play = this.play.bind(this);
     this.updatePet = this.updatePet.bind(this);
   }
 
   componentDidMount() {
-    
+    getPets(data => this.setState({
+      user: data.user,
+      pet: data.pets.find(pet => pet._id === this.props.match.params.id)
+    }))
   }
 
   render() {
-    return (
+    return this.state.pet != null ?
       <PetScene
         user={this.state.user}
         pet={this.state.pet}
-        feed={this.feed} />
-    )
+        feed={this.feed}
+        play={this.play}
+        // font='/bubble1.json'
+      />
+        : null
   }
-
-  // render() {
-  //   if (this.state.user && this.state.pet) {
-  //     var html = <PetScene user={this.state.user} pet={this.state.pet} />
-  //   } else if (this.state.user) {
-  //     var html = <SelectPetForm pets={this.state.user.pets} selectPet={this.selectPet}/>
-  //   } else {
-  //     var html = <LoginForm login={this.login} />
-  //   }
-  //   return html;
-  // }
-
-  // login(loginData) {
-  //   console.log(loginData)
-  //   sessionStorage.setItem('petToken', loginData.token);
-  //   this.setState({
-  //     user: loginData.user
-  //   });
-  // }
-
-  // selectPet(pet) {
-  //   console.log(pet);
-  //   this.setState({pet: pet})
-  // }
 
   feed() {
     if (this.state.pet.fullness < 4) {
       console.log(`feeding ${this.state.pet.name}`);
       let updatedPet = update(this.state.pet, {
-        fullness: {$apply: (x) => x + 1},
-        weight: {$apply: (y) => +(y + randFloat(.2, .6, 2)).toFixed(2)}
+        fullness: {$apply: x => x + 1},
+        weight: {$apply: y => +(y + randFloat(.2, .6, 2)).toFixed(2)}
         // gains between .2 and .6 lb every time fed
         // calculate 'leveling up/stages' based on weight
       });
-      this.setState({pet: updatedPet}, this.updatePet());
-      // should upatePet be a setState callback or use ComponentDidUpdate ??
+      this.setState({pet: updatedPet}, () => this.updatePet());
     }
   }
 
+  play() {
+    if (this.state.pet.happiness < 4 && this.state.pet.energy >= 0.5) {
+      console.log(`playing with ${this.state.pet.name}`);
+      let updatedPet = update(this.state.pet, {
+        happiness: {$apply: x => x + 1},
+        energy: {$apply: y => y - 0.5}
+      });
+      this.setState({pet: updatedPet}, () => this.updatePet());
+    }
+  }
+
+  sleep() {
+
+  }
+
+  clean() {
+
+  }
+
   updatePet() {
-    fetch('pet/update/', {
+    fetch('/pet/update/', {
       method: 'put',
       headers: {
         'Accept': 'application/json',

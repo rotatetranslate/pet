@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const Pet = require('../models/pet');
 
 router.put('/update', (req, res) => {
-  console.log(req.body)
-  Pet.findOneAndUpdate({_id: req.body.pet._id }, req.body.pet, {new: true}, (err, pet) => {
+  let pet = req.body.pet;
+  console.log('SENT PET ', pet)
+  Pet.findOneAndUpdate({_id: pet._id }, pet, {new: true}, (err, pet) => {
+    console.log('\nupdated pet? ', pet)
     res.status(200).json(pet);
   })
 })

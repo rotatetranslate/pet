@@ -11,7 +11,7 @@ const PetSchema = new mongoose.Schema({
   sleeping: {type: Boolean, default: false},
   happiness: {type: Number, min: 0, max: 4, default: 1},
   fullness: {type: Number, min: 0, max: 4, default: 1},
-  energy: {type: Number, min: 0, max: 4, default: 1},
+  energy: {type: Number, min: 0, max: 4, default: 4},
   waste: {type: Number, min: 0, max: 4, default: 0},
   sick: {type: Boolean, default: false}
 }, {timestamps: {createdAt: 'birthday'}})

@@ -10,7 +10,7 @@ class SelectPetForm extends Component {
     }
   }
   componentDidMount() {
-    getPets(pets => this.setState({pets: pets}))
+    getPets(data => this.setState({pets: data.pets}))
   }
   render() {
     let pets = this.state.pets != null ? this.state.pets.map(p => <PetOverview pet={p} key={p._id} />) : '';
@@ -23,18 +23,7 @@ class SelectPetForm extends Component {
       </div>
     )
   }
-  // getPets(cb) {
-  //   let token = sessionStorage.getItem('petToken');
-  //   fetch('/auth/jwt', {
-  //     method: 'post',
-  //     headers: {
-  //       'Authorization': `JWT ${token}`
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(pets => cb(pets))
-  //   .catch(err => console.log(err))
-  // }
+  
 }
 
 export default SelectPetForm;
