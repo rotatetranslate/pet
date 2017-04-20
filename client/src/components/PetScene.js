@@ -9,32 +9,28 @@ import PetActions from './PetActions';
 import Camera from './Camera';
 
 // import font from '../assets/fonts/04b30_Regular.json';
-// console.log('FONT ', font.constructor === Object);
 
-class PetScene extends Component {
-  constructor() {
-    super()
-  }
-  render() {
-    return (
-      <Scene>
-        <Camera>
-          <a-cursor>
-          </a-cursor>
-        </Camera>
-        <Text
-          text={`Hello ${this.props.user}`}
-          position={[0, 1, -5]}
-          // font={font}
-          // font='bubble1.json'
-        />
-        <Pet pet={this.props.pet} />
-        <PetActions
-          feed={this.props.feed}
-          play={this.props.play}/>
-      </Scene>
-    )
-  }
+const PetScene = props => {
+  return (
+    <Scene>
+      <Camera>
+        <a-cursor>
+        </a-cursor>
+      </Camera>
+      <Text
+        text={`Hello ${props.user}`}
+        position={{x: 0, y: 1, z: -5}}
+        // font={font}
+        // font='bubble1.json'
+      />
+      <Pet pet={props.pet} />
+      <PetActions
+        feed={props.feed}
+        play={props.play}/>
+    </Scene>
+  )
 }
+
+
 
 export default PetScene;

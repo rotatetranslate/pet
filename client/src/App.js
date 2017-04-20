@@ -33,7 +33,6 @@ class App extends Component {
         pet={this.state.pet}
         feed={this.feed}
         play={this.play}
-        // font='/bubble1.json'
       />
         : null
   }

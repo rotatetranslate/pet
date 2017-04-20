@@ -5,8 +5,8 @@ import Action from './Action';
 const PetActions = props => {
   return (
     <Entity>
-      <Action position={[-1, 5, -5]} action={props.feed}/>
-      <Action position={[2, 5, -5]} action={props.play}/>
+      <Action position={{x: -1, y: 5, z: -5}} action={props.feed}/>
+      <Action position={{x: 2, y: 5, z: -5}} action={props.play}/>
     </Entity>
   )
 }
