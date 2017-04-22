@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import update from 'immutability-helper';
 import { randFloat, randInt, getPets } from './helpers';
 
-import LoginForm from './components/LoginForm';
 import PetScene from './components/PetScene';
-import SelectPetForm from './components/SelectPetForm';
 
 class App extends Component {
   constructor() {
@@ -23,7 +21,7 @@ class App extends Component {
     getPets(data => this.setState({
       user: data.user,
       pet: data.pets.find(pet => pet._id === this.props.match.params.id)
-    }))
+    }));
   }
 
   render() {
@@ -33,15 +31,24 @@ class App extends Component {
         pet={this.state.pet}
         feed={this.feed}
         play={this.play}
-      />
-        : null
+      /> : null
   }
 
+  // render() {
+  //   return null ||
+  //     <PetScene
+  //       user={this.state.user}
+  //       pet={this.state.pet}
+  //       feed={this.feed}
+  //       play={this.play}
+  //     />
+  // }
+
   feed() {
-    if (this.state.pet.fullness < 4) {
+    if (this.state.pet.stats.fullness < 4) {
       console.log(`feeding ${this.state.pet.name}`);
       let updatedPet = update(this.state.pet, {
-        fullness: {$apply: x => x + 1},
+        stats: {fullness: {$apply: x => x + 1}},
         weight: {$apply: y => +(y + randFloat(.2, .6, 2)).toFixed(2)}
         // gains between .2 and .6 lb every time fed
         // calculate 'leveling up/stages' based on weight
@@ -50,12 +57,22 @@ class App extends Component {
     }
   }
 
+  // play() {
+  //   if (this.state.pet.stats.happiness < 4 && this.state.pet.stats.energy >= 0.5) {
+  //     console.log(`playing with ${this.state.pet.name}`);
+  //     let updatedPet = update(this.state.pet, {
+  //       stats: {happiness: {$apply: x => x + 1}},
+  //       energy: {$apply: y => y - 0.5}
+  //     });
+  //     this.setState({pet: updatedPet}, () => this.updatePet());
+  //   }
+  // }
+
   play() {
-    if (this.state.pet.happiness < 4 && this.state.pet.energy >= 0.5) {
+    if (this.state.pet.stats.happiness < 4 && this.state.pet.stats.energy >= 0.5) {
       console.log(`playing with ${this.state.pet.name}`);
       let updatedPet = update(this.state.pet, {
-        happiness: {$apply: x => x + 1},
-        energy: {$apply: y => y - 0.5}
+        stats: {happiness: {$apply: x => x + 1}, energy: {$apply: y => y - 0.5}},
       });
       this.setState({pet: updatedPet}, () => this.updatePet());
     }
@@ -67,6 +84,11 @@ class App extends Component {
 
   clean() {
 
+  }
+
+  cycle() {
+    // check weight to determine stage/asset
+    //
   }
 
   updatePet() {

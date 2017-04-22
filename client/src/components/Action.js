@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Entity} from 'aframe-react';
+import { Entity } from 'aframe-react';
 
 const Action = props => {
   return (
@@ -7,10 +7,8 @@ const Action = props => {
       geometry={{primitive: 'box', depth: .5, height: 2, width: 1}}
       material={{color: '#FFC65D'}}
       position={props.position}
-      // onClick={() => props.action()}
-      events={{click: () => props.action()}}
-    />
-
+      events={{click: () => props.action()}} />
+      // events={{click: () => console.log(props.action)}} />
   )
 }
 
