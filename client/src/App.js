@@ -34,16 +34,6 @@ class App extends Component {
       /> : null
   }
 
-  // render() {
-  //   return null ||
-  //     <PetScene
-  //       user={this.state.user}
-  //       pet={this.state.pet}
-  //       feed={this.feed}
-  //       play={this.play}
-  //     />
-  // }
-
   feed() {
     if (this.state.pet.stats.fullness < 4) {
       console.log(`feeding ${this.state.pet.name}`);
@@ -57,22 +47,12 @@ class App extends Component {
     }
   }
 
-  // play() {
-  //   if (this.state.pet.stats.happiness < 4 && this.state.pet.stats.energy >= 0.5) {
-  //     console.log(`playing with ${this.state.pet.name}`);
-  //     let updatedPet = update(this.state.pet, {
-  //       stats: {happiness: {$apply: x => x + 1}},
-  //       energy: {$apply: y => y - 0.5}
-  //     });
-  //     this.setState({pet: updatedPet}, () => this.updatePet());
-  //   }
-  // }
-
   play() {
     if (this.state.pet.stats.happiness < 4 && this.state.pet.stats.energy >= 0.5) {
       console.log(`playing with ${this.state.pet.name}`);
       let updatedPet = update(this.state.pet, {
-        stats: {happiness: {$apply: x => x + 1}, energy: {$apply: y => y - 0.5}},
+        stats: {happiness: {$apply: x => x + 1},
+                energy: {$apply: y => y - 0.5}}
       });
       this.setState({pet: updatedPet}, () => this.updatePet());
     }
@@ -87,8 +67,11 @@ class App extends Component {
   }
 
   cycle() {
+    // every minute
     // check weight to determine stage/asset
-    //
+    // 0 - 20 child, 20 - 50 teen, 50 + adult 
+    //  75% chance to remove 1 energy, fullness, happiness
+    // if feed while fullness === 4 33% chance to get sick
   }
 
   updatePet() {

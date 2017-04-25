@@ -1,18 +1,18 @@
-const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const jwtSecret = process.env.JWT_SECRET;
 const localStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
-passport.use('signup', new localStrategy({
-  passReqToCallback: true
-},
-  (req, username, password, done) => {
-    const newUser = new User({
+module.exports = passport => {
+  passport.use('signup', new localStrategy((username, password, done) => {
+    let newUser = new User({
       username,
       password
     });
-    console.log(newUser)
-    newUser.save(err => {
-      if (err) return done(err);
-      return done(null);
-    })
-  }))
+    newUser.save((err, user) => {
+      if (err) return done(new Error('Username taken'));
+      let token = jwt.sign({id: user._id}, jwtSecret);
+      return done(null, token);
+    });
+  }));
+}

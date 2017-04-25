@@ -6,6 +6,7 @@ class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
+      message: null,
       user: {
         username: null,
         password: null,
@@ -24,8 +25,16 @@ class LoginForm extends Component {
         VIRTUA PET
         <form method="POST" onSubmit={this.submitLoginForm}>
           <h2>Log In</h2>
-          Username: <input name="username" type="text" placeholder="Username" onChange={this.updateUserInfo} /> <br/>
-          Password: <input name="password" type="password" placeholder="Password" onChange={this.updateUserInfo} /> <br/>
+          Username: <input
+                      name="username"
+                      type="text"
+                      placeholder="Username"
+                      onChange={this.updateUserInfo} /> <br/>
+          Password: <input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      onChange={this.updateUserInfo} /> <br/>
           <button>Log In</button> <br/>
           Don't have an account? Create One
         </form>
@@ -44,15 +53,18 @@ class LoginForm extends Component {
       body: JSON.stringify(this.state.user)
     })
     .then(res => res.json())
+    // .then(data => console.log(data))
     .then(data => this.login(data))
     .catch(err => console.log(err))
   }
 
-  login({token}) {
-    sessionStorage.setItem('petToken', token);
-    this.setState({
-      user: token
-    });
+  login(data) {
+    if (data.error) {
+      this.setState({message: data.error});
+    } else {
+      sessionStorage.setItem('petToken', data.token);
+      this.setState({user: data.token});
+    }
   }
 
   updateUserInfo(e) {

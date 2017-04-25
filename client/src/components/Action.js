@@ -8,7 +8,6 @@ const Action = props => {
       material={{color: '#FFC65D'}}
       position={props.position}
       events={{click: () => props.action()}} />
-      // events={{click: () => console.log(props.action)}} />
   )
 }
 

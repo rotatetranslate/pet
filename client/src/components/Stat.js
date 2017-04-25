@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
 
 const Stat = props => {
-  // console.log('PROPS', props)
   return (
     <Entity
       geometry={{primitive: 'box', depth: .75, height: .75, width: .75}}
