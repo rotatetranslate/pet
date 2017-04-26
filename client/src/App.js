@@ -30,8 +30,8 @@ class App extends Component {
         user={this.state.user}
         pet={this.state.pet}
         feed={this.feed}
-        play={this.play}
-      /> : null
+        play={this.play}/> :
+        null
   }
 
   feed() {
@@ -69,7 +69,7 @@ class App extends Component {
   cycle() {
     // every minute
     // check weight to determine stage/asset
-    // 0 - 20 child, 20 - 50 teen, 50 + adult 
+    // 0 - 20 child, 20 - 50 teen, 50 + adult
     //  75% chance to remove 1 energy, fullness, happiness
     // if feed while fullness === 4 33% chance to get sick
   }

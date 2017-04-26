@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 // import '../App.css';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   constructor() {
     super();
     this.state = {
       message: null,
+      passwordsMatch: false,
       user: {
         username: null,
         password: null,
+        confirmPassword: null,
       }
     }
     this.submitLoginForm = this.submitLoginForm.bind(this);
     this.updateUserInfo = this.updateUserInfo.bind(this);
+    this.checkPasswordsMatch = this.checkPasswordsMatch.bind(this);
     this.login = this.login.bind(this);
   }
   render() {
@@ -24,7 +27,7 @@ class LoginForm extends Component {
       <div>
         <h1>VIRTUA PET</h1>
         <form method="POST" onSubmit={this.submitLoginForm}>
-          <h2>Log In</h2>
+          <h2>Sign Up</h2>
           Username: <input
                       name="username"
                       type="text"
@@ -35,11 +38,17 @@ class LoginForm extends Component {
                       type="password"
                       placeholder="Password"
                       onChange={this.updateUserInfo} /> <br/>
+          Confirm Password: <input
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Confirm Password"
+                      onChange={this.updateUserInfo} /> <br/>
           <button
-            disabled={!this.state.user.username || !this.state.user.password}>
-            Log In</button> <br/>
+            disabled={!this.state.user.username || !this.state.passwordsMatch}>
+            Sign Up
+          </button> <br/>
           <p>{this.state.message}</p>
-          Don't have an account? <Link to="/signup">Create One</Link>
+          Already have an account? <Link to="/login">Log In</Link>
         </form>
       </div>
     )
@@ -47,8 +56,9 @@ class LoginForm extends Component {
 
   submitLoginForm(e) {
     e.preventDefault();
-    if (this.state.user.username && this.state.user.password) {
-      fetch('auth/login/', {
+    if (this.state.user.username && this.state.passwordsMatch) {
+      console.log('signing up')
+      fetch('auth/signup/', {
         method: 'post',
         headers: {
           'Accept': 'application/json',
@@ -59,8 +69,6 @@ class LoginForm extends Component {
       .then(res => res.json())
       .then(data => this.login(data))
       .catch(err => console.log(err))
-    } else {
-      this.setState({message: 'Please enter your credentials'});
     }
   }
 
@@ -80,9 +88,28 @@ class LoginForm extends Component {
     user[field] = e.target.value;
     this.setState({
       user: user
-    })
+    });
+    if (!this.state.user.username) {
+      this.setState({message: 'Please enter a username'})
+    }
+    if (this.state.user.confirmPassword) {
+      this.checkPasswordsMatch();
+    }
+  }
+
+  checkPasswordsMatch() {
+    let {password, confirmPassword} = this.state.user;
+    password && password === confirmPassword ?
+    this.setState({
+      message: null,
+      passwordsMatch: true
+    }) :
+    this.setState({
+      message: 'Passwords do not match',
+      passwordsMatch: false
+    });
   }
 
 }
 
-export default LoginForm;
+export default SignupForm;

@@ -5,6 +5,7 @@ const User = require('../models/user');
 
 module.exports = passport => {
   passport.use('signup', new localStrategy((username, password, done) => {
+    if (!username || !password) return done(new Error('Must provide username and password'));
     let newUser = new User({
       username,
       password
