@@ -24,14 +24,16 @@ class LoginForm extends Component {
       <div className="container">
         <div>
           <h1>VIRTUA PET</h1>
-          <form method="POST" onSubmit={this.submitLoginForm}>
+          <form className="box" method="POST" onSubmit={this.submitLoginForm}>
             <h3>Log In</h3>
-            <h5>Username:</h5> <input
+            <h5>Username:</h5>
+            <input
               name="username"
               type="text"
               placeholder="Username"
               onChange={this.updateUserInfo} /> <br/>
-            <h5>Password:</h5> <input
+            <h5>Password:</h5>
+            <input
               name="password"
               type="password"
               placeholder="Password"
@@ -42,7 +44,7 @@ class LoginForm extends Component {
               <p>{this.state.message}</p>
               <h5>Don't have an account? <Link to="/signup">Create One</Link></h5>
           </form>
-      </div>
+        </div>
       </div>
     )
   }

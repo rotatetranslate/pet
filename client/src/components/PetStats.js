@@ -17,7 +17,10 @@ class PetStats extends Component {
   }
 
   render() {
+    console.log('props before', this.props);
     let formattedStats = this.formatStats(this.props);
+    console.log('props after', this.props);
+
     return (
       <Entity position={{x: 1, y: 3, z: -6}}>
         {formattedStats}

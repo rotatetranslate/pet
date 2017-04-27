@@ -20,7 +20,6 @@ h1 {
 }
 
 h5 {
-  display: box;
   margin: 10px 0 4px 0;
   padding: 0;
 }
@@ -45,10 +44,10 @@ p {
 }
 
 .container div {
-  padding-bottom: 100px;
+  margin-bottom: 10px;
 }
 
-form {
+.box {
   color: white;
   background-color: #FE938C;
   padding: 0 15px 15px 15px;
@@ -69,12 +68,27 @@ input:focus {
   outline: none;
 }
 
+button:focus {
+  outline: none;
+}
+
 button {
   font-family: "Andale Mono", monospace;
   margin-top: 15px;
   /*border: 1px solid black;*/
   background-color: white;
   border-radius: 60px;
+}
+
+ul {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.petOverview {
+  border: 1px solid black;
 }
 
 /*

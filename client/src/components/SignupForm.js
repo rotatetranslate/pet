@@ -27,19 +27,22 @@ class SignupForm extends Component {
       <div className="container">
         <div>
           <h1>VIRTUA PET</h1>
-          <form method="POST" onSubmit={this.submitLoginForm}>
+          <form className="box" method="POST" onSubmit={this.submitLoginForm}>
             <h3>Sign Up</h3>
-            <h5>Username:</h5> <input
+            <h5>Username:</h5>
+            <input
               name="username"
               type="text"
               placeholder="Username"
               onChange={this.updateUserInfo} /> <br/>
-            <h5>Password:</h5> <input
+            <h5>Password:</h5>
+            <input
               name="password"
               type="password"
               placeholder="Password"
               onChange={this.updateUserInfo} /> <br/>
-            <h5>Confirm Password:</h5> <input
+            <h5>Confirm Password:</h5>
+            <input
               name="confirmPassword"
               type="password"
               placeholder="Confirm Password"
