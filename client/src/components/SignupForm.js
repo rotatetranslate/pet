@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import '../App.css';
+import '../App.css';
 
 class SignupForm extends Component {
   constructor() {
@@ -24,32 +24,34 @@ class SignupForm extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <div>
-        <h1>VIRTUA PET</h1>
-        <form method="POST" onSubmit={this.submitLoginForm}>
-          <h2>Sign Up</h2>
-          Username: <input
-                      name="username"
-                      type="text"
-                      placeholder="Username"
-                      onChange={this.updateUserInfo} /> <br/>
-          Password: <input
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                      onChange={this.updateUserInfo} /> <br/>
-          Confirm Password: <input
-                      name="confirmPassword"
-                      type="password"
-                      placeholder="Confirm Password"
-                      onChange={this.updateUserInfo} /> <br/>
-          <button
-            disabled={!this.state.user.username || !this.state.passwordsMatch}>
-            Sign Up
-          </button> <br/>
-          <p>{this.state.message}</p>
-          Already have an account? <Link to="/login">Log In</Link>
-        </form>
+      <div className="container">
+        <div>
+          <h1>VIRTUA PET</h1>
+          <form method="POST" onSubmit={this.submitLoginForm}>
+            <h3>Sign Up</h3>
+            <h5>Username:</h5> <input
+              name="username"
+              type="text"
+              placeholder="Username"
+              onChange={this.updateUserInfo} /> <br/>
+            <h5>Password:</h5> <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={this.updateUserInfo} /> <br/>
+            <h5>Confirm Password:</h5> <input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              onChange={this.updateUserInfo} /> <br/>
+            <button
+              disabled={!this.state.user.username || !this.state.passwordsMatch}>
+              Sign Up
+            </button> <br/>
+            <p>{this.state.message}</p>
+            <h5>Already have an account? <Link to="/login">Log In</Link></h5>
+          </form>
+        </div>
       </div>
     )
   }
@@ -73,9 +75,8 @@ class SignupForm extends Component {
   }
 
   login(data) {
-    console.log('received data', data)
     if (data.error) {
-      this.setState({message: data.error});
+      this.setState({message: `⚠️ ${data.error} ⚠️`});
     } else {
       sessionStorage.setItem('petToken', data.token);
       this.setState({user: data.token});
@@ -90,7 +91,7 @@ class SignupForm extends Component {
       user: user
     });
     if (!this.state.user.username) {
-      this.setState({message: 'Please enter a username'})
+      this.setState({message: '⚠️ Please enter a username ⚠️'})
     }
     if (this.state.user.confirmPassword) {
       this.checkPasswordsMatch();
@@ -105,7 +106,7 @@ class SignupForm extends Component {
       passwordsMatch: true
     }) :
     this.setState({
-      message: 'Passwords do not match',
+      message: '⚠️ Passwords do not match ⚠️',
       passwordsMatch: false
     });
   }
