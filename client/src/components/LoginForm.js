@@ -31,18 +31,21 @@ class LoginForm extends Component {
               name="username"
               type="text"
               placeholder="Username"
-              onChange={this.updateUserInfo} /> <br/>
+              onChange={this.updateUserInfo} />
+            <br/>
             <h5>Password:</h5>
             <input
               name="password"
               type="password"
               placeholder="Password"
-              onChange={this.updateUserInfo} /> <br/>
+              onChange={this.updateUserInfo} />
+            <br/>
             <button
               disabled={!this.state.user.username || !this.state.user.password}>
-              Log In</button> <br/>
-              <p>{this.state.message}</p>
-              <h5>Don't have an account? <Link to="/signup">Create One</Link></h5>
+              Log In</button>
+            <br/>
+            <p>{this.state.message}</p>
+            <h5>Don't have an account? <Link to="/signup">Create One</Link></h5>
           </form>
         </div>
       </div>

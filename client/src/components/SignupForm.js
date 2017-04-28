@@ -34,23 +34,27 @@ class SignupForm extends Component {
               name="username"
               type="text"
               placeholder="Username"
-              onChange={this.updateUserInfo} /> <br/>
+              onChange={this.updateUserInfo} />
+            <br/>
             <h5>Password:</h5>
             <input
               name="password"
               type="password"
               placeholder="Password"
-              onChange={this.updateUserInfo} /> <br/>
+              onChange={this.updateUserInfo} />
+            <br/>
             <h5>Confirm Password:</h5>
             <input
               name="confirmPassword"
               type="password"
               placeholder="Confirm Password"
-              onChange={this.updateUserInfo} /> <br/>
+              onChange={this.updateUserInfo} />
+            <br/>
             <button
               disabled={!this.state.user.username || !this.state.passwordsMatch}>
               Sign Up
-            </button> <br/>
+            </button>
+            <br/>
             <p>{this.state.message}</p>
             <h5>Already have an account? <Link to="/login">Log In</Link></h5>
           </form>

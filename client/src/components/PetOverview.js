@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const PetOverview = ({pet}) => {
-  console.log('pet', pet)
-  // name
-  // last played with
-  // bday
-  // age
-  // weight
   return (
     <div className="box">
       <h5>Name: {pet.name}</h5>

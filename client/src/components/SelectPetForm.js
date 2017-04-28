@@ -7,12 +7,19 @@ class SelectPetForm extends Component {
   constructor() {
     super()
     this.state = {
-      pets: null
+      pets: null,
+      newPetName: null,
+      message: null
     }
+    this.updateNewPetName = this.updateNewPetName.bind(this);
+    this.checkNameLength = this.checkNameLength.bind(this);
+    this.submitLoginForm = this.submitLoginForm.bind(this);
   }
+
   componentDidMount() {
     getPets(data => this.setState({pets: data.pets}))
   }
+
   render() {
     let pets = this.state.pets != null ? this.state.pets.map(p => <li><PetOverview pet={p} key={p._id} /></li>) : '';
     return (
@@ -22,20 +29,61 @@ class SelectPetForm extends Component {
           <ul>
             {pets}
             <li>
-              <div className="box">
+              <form className="box" method="POST" onSubmit={this.submitLoginForm}>
                 <h3>New Pet</h3>
                 <h5>Name:</h5>
                 <input
                   type="text"
-                  name="petname"
-                  placeholder="New pet name"/> <br/>
+                  name="newPetName"
+                  placeholder="New pet name"
+                  onChange={this.updateNewPetName} />
+                <br/>
+                <p>{this.state.message}</p>
                 <button>New pet</button>
-              </div>
+              </form>
             </li>
           </ul>
         </div>
       </div>
     )
+  }
+
+  updateNewPetName(e) {
+    this.setState({newPetName: e.target.value}, () => this.checkNameLength());
+  }
+
+  checkNameLength() {
+    let {newPetName} = this.state;
+    newPetName.length >= 30 ?
+    this.setState({
+      newPetName: newPetName.slice(0, 9),
+      message: '⚠️ Name must be under 30 characters ⚠️'
+    }) :
+    this.setState({message: null});
+  }
+
+  submitLoginForm(e) {
+    e.preventDefault();
+    let token = sessionStorage.getItem('petToken');
+    let {newPetName} = this.state;
+    if (newPetName && newPetName.length < 30) {
+      console.log('attempting to craete new pet ', newPetName)
+      fetch('pet/new/', {
+        method: 'post',
+        headers: {
+          'Authorization': `JWT ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({newPetName})
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+      // .then(console.log('test??'))
+    } else {
+      this.setState({message: '⚠️ Please enter a name ⚠️'});
+    }
   }
 
 }

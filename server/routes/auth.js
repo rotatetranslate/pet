@@ -15,7 +15,7 @@ router.post('/jwt', (req, res, next) => {
   passport.authenticate('jwt', (err, user) => {
     err ? res.json({error: err.message}) : res.json(user);
   })(req, res, next);
-})
+});
 
 router.post('/signup', (req, res, next) => {
   passport.authenticate('signup', (err, token) => {

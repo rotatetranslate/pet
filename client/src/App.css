@@ -27,11 +27,10 @@ h5 {
 @keyframes warning {
   0% {color: white;}
   50% {color: #ffcd05;}
-  /*50% {color: black;}*/
-  /*50% {color: #9D4485;}*/
 }
 
 p {
+  font-size: .75em;
   animation: 2s infinite warning;
 }
 
@@ -87,8 +86,8 @@ ul {
   padding: 0;
 }
 
-.petOverview {
-  border: 1px solid black;
+link {
+  text-decoration: none;
 }
 
 /*
