@@ -10,11 +10,11 @@
 
 body {
   text-align: center;
+  color: white;
 }
 
 h1 {
   font-family: bubble;
-  color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   /*-webkit-text-stroke: .5px black;*/
 }
@@ -48,8 +48,12 @@ p {
   margin-bottom: auto;
 }
 
+.logout {
+  position: absolute;
+  right: 100px;
+}
+
 .box {
-  color: white;
   background-color: #FE938C;
   padding: 0 15px 15px 15px;
   margin: 10px auto;
@@ -88,7 +92,7 @@ ul {
   padding: 0;
 }
 
-link {
+a {
   text-decoration: none;
 }
 

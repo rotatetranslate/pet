@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PetOverview from './PetOverview';
 import { getPets } from './../helpers';
 import update from 'immutability-helper';
@@ -26,7 +27,7 @@ class SelectPetForm extends Component {
     return (
       <div className="container">
         <div>
-          {/* <span>logout</span> */}
+          <span className="logout"><h1><Link to="/logout">➡️🚪</Link></h1></span>
           <h1>Select Pet</h1>
           <ul>
             {pets}
