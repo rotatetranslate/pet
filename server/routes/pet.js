@@ -5,7 +5,8 @@ const passport = require('passport');
 require('../passport/new_pet')(passport);
 
 router.put('/update', (req, res) => {
-  let pet = req.body.pet;
+  let {pet} = req.body;
+  delete pet.updatedAt;
   Pet.findOneAndUpdate({_id: pet._id }, pet, {new: true}, (err, pet) => {
     res.status(200).json(pet);
   });

@@ -19,8 +19,26 @@ function getPetsFromJwt(cb) {
   .catch(err => console.log(err))
 }
 
+function formatDate(d) {
+  let mo = d.getMonth();
+  let day = d.getDate();
+  let yr = d.getFullYear();
+  let hrs = d.getHours();
+  let suffix = 'am';
+  if (hrs > 12) {
+    hrs-= 12;
+    suffix = 'pm';
+  }
+  let min = d.getMinutes();
+  if (min.toString().length < 2) {
+    min = `0${min}`;
+  }
+  return `${mo}-${day}-${yr} ${hrs}:${min} ${suffix}`;
+}
+
 module.exports = {
   randFloat,
   randInt,
-  getPets: getPetsFromJwt
+  getPets: getPetsFromJwt,
+  formatDate
 }

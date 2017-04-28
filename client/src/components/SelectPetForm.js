@@ -26,6 +26,7 @@ class SelectPetForm extends Component {
     return (
       <div className="container">
         <div>
+          {/* <span>logout</span> */}
           <h1>Select Pet</h1>
           <ul>
             {pets}
