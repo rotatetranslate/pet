@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PetOverview from './PetOverview';
 import { getPets } from './../helpers';
+import update from 'immutability-helper';
 import '../App.css';
 
 class SelectPetForm extends Component {
@@ -13,7 +14,7 @@ class SelectPetForm extends Component {
     }
     this.updateNewPetName = this.updateNewPetName.bind(this);
     this.checkNameLength = this.checkNameLength.bind(this);
-    this.submitLoginForm = this.submitLoginForm.bind(this);
+    this.submitNewPetForm = this.submitNewPetForm.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class SelectPetForm extends Component {
           <ul>
             {pets}
             <li>
-              <form className="box" method="POST" onSubmit={this.submitLoginForm}>
+              <form className="box" method="POST" onSubmit={this.submitNewPetForm}>
                 <h3>New Pet</h3>
                 <h5>Name:</h5>
                 <input
@@ -62,12 +63,12 @@ class SelectPetForm extends Component {
     this.setState({message: null});
   }
 
-  submitLoginForm(e) {
+  submitNewPetForm(e) {
     e.preventDefault();
+    document.querySelector('input').value = null;
     let token = sessionStorage.getItem('petToken');
     let {newPetName} = this.state;
     if (newPetName && newPetName.length < 30) {
-      console.log('attempting to craete new pet ', newPetName)
       fetch('pet/new/', {
         method: 'post',
         headers: {
@@ -78,7 +79,10 @@ class SelectPetForm extends Component {
         body: JSON.stringify({newPetName})
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(pet => {
+        let updatedPets = update(this.state.pets, {$push: [pet]});
+        this.setState({pets: updatedPets})
+      })
       .catch(err => console.log(err))
       // .then(console.log('test??'))
     } else {

@@ -40,17 +40,19 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 
 .container div {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: auto;
 }
 
 .box {
   color: white;
   background-color: #FE938C;
   padding: 0 15px 15px 15px;
-  margin: 0 auto;
+  margin: 10px auto;
   max-width: 100%;
   border: 2px solid white;
   border-radius: 10px;
@@ -88,6 +90,10 @@ ul {
 
 link {
   text-decoration: none;
+}
+
+.logout {
+  float: right
 }
 
 /*
