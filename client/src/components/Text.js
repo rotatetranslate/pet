@@ -32,11 +32,15 @@ class Text extends Component {
 
   speak(i = 1) {
     let nextChar = this.props.text.slice(0, i);
-    this.setState({say: nextChar}, () => {
-      setTimeout(() => {
-        this.speak(i + 1);
-      }, 100);
-    });
+    if (i === this.props.text.length + 1) {
+      return;
+    } else {
+      return this.setState({say: nextChar}, () => {
+        setTimeout(() => {
+          this.speak(i + 1);
+        }, 100);
+      });
+    }
   }
 
 }
