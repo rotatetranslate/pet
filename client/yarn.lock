@@ -43,9 +43,9 @@ aframe-animation-component@^3.2.3:
   dependencies:
     animejs "^1.1.0"
 
-aframe-react@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.1.1.tgz#122af9206d9566c08db0379e4bb29193670b01ac"
+aframe-react@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.2.3.tgz#3b702d9d2fb22482fd1c1d2792c12be97ba6e9a7"
 
 aframe-text-geometry-component@^0.5.1:
   version "0.5.1"

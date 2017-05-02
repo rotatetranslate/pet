@@ -14,6 +14,9 @@ class App extends Component {
     }
     this.feed = this.feed.bind(this);
     this.play = this.play.bind(this);
+    this.clean = this.clean.bind(this);
+    this.sleep = this.sleep.bind(this);
+    this.cycle = this.cycle.bind(this);
     this.updatePet = this.updatePet.bind(this);
   }
 
@@ -21,7 +24,9 @@ class App extends Component {
     getPets(data => this.setState({
       user: data.user,
       pet: data.pets.find(pet => pet._id === this.props.match.params.id)
-    }));
+    }, () => setTimeout(() => {
+      // this.cycle()
+    }, 5000)));
   }
 
   render() {
@@ -44,6 +49,14 @@ class App extends Component {
         // calculate 'leveling up/stages' based on weight
       });
       this.setState({pet: updatedPet}, () => this.updatePet());
+    } else {
+      // 25% chance to get sick if try to feed when fullness === 4
+      if (randInt(0, 100) <= 25) {
+        let updatedPet = update(this.state.pet, {
+          sick: {$set: true}
+        });
+        this.setState({pet: updatedPet}, () => this.updatePet());
+      }
     }
   }
 
@@ -59,20 +72,40 @@ class App extends Component {
   }
 
   sleep() {
-
+    let updatedPet = update(this.state.pet, {
+      sleeping: {$set: true}
+    });
+    this.setState({pet: updatedPet}, () => this.updatePet());
   }
 
   clean() {
-
+    let updatedPet = update(this.state.pet, {
+      waste: {$set: 0}
+    });
+    this.setState({pet: updatedPet}, () => this.updatePet());
   }
 
+  // every minute
+  // check weight to determine stage/asset
+  // 0 - 20 child, 20 - 50 teen, 50 + adult
+  //  75% chance to remove 1 energy, fullness, happiness
   cycle() {
-    // every minute
-    // check weight to determine stage/asset
-    // 0 - 20 child, 20 - 50 teen, 50 + adult
-    //  75% chance to remove 1 energy, fullness, happiness
-    // if feed while fullness === 4 33% chance to get sick
+    let chances = [0, 0, 0].map(chance => randInt(0, 100) <= 75 ? 1 : 0);
+    let updatedPet = update(this.state.pet, {
+      stats: {happiness: {$apply: x => x - chances[0]},
+              energy: {$apply: y => y - chances[1]},
+              fullness: {$apply: z => z - chances[2]}}
+    });
+    console.log('chances', chances);
+    this.setState({pet: updatedPet}, () => this.updatePet());
+    setTimeout(() => {
+      this.cycle();
+    }, 5000)
   }
+
+  // cycleChance() {
+  //   let chances = [0, 0, 0].map(chance => randInt(0, 100) <= 75 ? 1 : 0);
+  // }
 
   updatePet() {
     fetch('/pet/update/', {
@@ -85,7 +118,7 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(data => console.log(data))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
   }
 
 }

@@ -23,7 +23,7 @@ class SelectPetForm extends Component {
   }
 
   render() {
-    let pets = this.state.pets != null ? this.state.pets.map(p => <li><PetOverview pet={p} key={p._id} /></li>) : '';
+    let pets = this.state.pets != null ? this.state.pets.map(pet => <li key={pet._id}><PetOverview pet={pet} /></li>) : '';
     return (
       <div className="container">
         <div>
