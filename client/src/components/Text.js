@@ -14,12 +14,11 @@ class Text extends Component {
   }
 
   render() {
-    console.log('rendering');
-    console.log('say', this.state.say);
     return (
       <Entity
-        text-geometry={{value: this.state.say, font: 'http://localhost:3000/bubble1.json', size: .25}}
+        text-geometry={{value: this.state.say, font: 'http://localhost:3000/bubble1.json', size: 4}}
         position={this.props.position}
+        rotation={{y: 90}}
         sound={{src: 'http://localhost:3000/talk_1.mp3', on: 'componentchanged', volume: 8, poolSize: 1}}
         // _ref = {(el) => el.setAttribute('text-geometry', {value: 'test'})}
       />
@@ -33,7 +32,9 @@ class Text extends Component {
   speak(i = 1) {
     let nextChar = this.props.text.slice(0, i);
     if (i === this.props.text.length + 1) {
-      return;
+      return setTimeout(() => {
+        this.setState({say: ''})
+      }, 5000);
     } else {
       return this.setState({say: nextChar}, () => {
         setTimeout(() => {

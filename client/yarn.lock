@@ -43,6 +43,19 @@ aframe-animation-component@^3.2.3:
   dependencies:
     animejs "^1.1.0"
 
+aframe-extras@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-3.8.1.tgz#5e8a8de4f69ca68fec19fab28cf76d8a7f922ea5"
+  dependencies:
+    aframe-physics-system "^1.4.0"
+
+aframe-physics-system@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/aframe-physics-system/-/aframe-physics-system-1.4.0.tgz#2831a61265876b9237bc4ce3662c72c136605ae5"
+  dependencies:
+    cannon "github:donmccurdy/cannon.js#v0.6.2-dev1"
+    three-to-cannon "^1.0.5"
+
 aframe-react@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/aframe-react/-/aframe-react-4.2.3.tgz#3b702d9d2fb22482fd1c1d2792c12be97ba6e9a7"
@@ -1194,6 +1207,10 @@ caniuse-api@^1.5.2:
 caniuse-db@^1.0.30000346, caniuse-db@^1.0.30000618, caniuse-db@^1.0.30000631:
   version "1.0.30000632"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000632.tgz#12e3f5c114d19de58e74dec478a327fb2eeb6bcb"
+
+"cannon@github:donmccurdy/cannon.js#v0.6.2-dev1":
+  version "0.6.2"
+  resolved "https://codeload.github.com/donmccurdy/cannon.js/tar.gz/022e8ba53fa83abf0ad8a0e4fd08623123838a17"
 
 cardinal@^1.0.0:
   version "1.0.0"
@@ -6271,6 +6288,10 @@ three-buffer-vertex-data@^1.0.0:
   resolved "https://registry.yarnpkg.com/three-buffer-vertex-data/-/three-buffer-vertex-data-1.1.0.tgz#cf228e78427665884b961a4cabe1f85ed39f82b1"
   dependencies:
     flatten-vertex-data "^1.0.0"
+
+three-to-cannon@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/three-to-cannon/-/three-to-cannon-1.0.5.tgz#e3c1585753f9677d7b04bf1bbe17287bca6b493f"
 
 three@^0.83.0:
   version "0.83.0"

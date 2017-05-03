@@ -23,7 +23,7 @@ class SelectPetForm extends Component {
   }
 
   render() {
-    let pets = this.state.pets != null ? this.state.pets.map(pet => <li key={pet._id}><PetOverview pet={pet} /></li>) : '';
+    let pets = this.state.pets ? this.state.pets.map(pet => <li key={pet._id}><PetOverview pet={pet} /></li>) : '';
     return (
       <div className="container">
         <div>
@@ -85,8 +85,7 @@ class SelectPetForm extends Component {
         let updatedPets = update(this.state.pets, {$push: [pet]});
         this.setState({pets: updatedPets})
       })
-      .catch(err => console.log(err))
-      // .then(console.log('test??'))
+      .catch(err => console.log(err));
     } else {
       this.setState({message: '⚠️ Please enter a name ⚠️'});
     }

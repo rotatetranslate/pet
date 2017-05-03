@@ -30,13 +30,13 @@ class App extends Component {
   }
 
   render() {
-    return this.state.pet != null ?
+    return this.state.pet ?
       <PetScene
         user={this.state.user}
         pet={this.state.pet}
         feed={this.feed}
         play={this.play}/> :
-        null
+      null
   }
 
   feed() {

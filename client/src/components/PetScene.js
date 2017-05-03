@@ -1,7 +1,7 @@
 import 'aframe';
 import 'aframe-text-geometry-component';
 import React, { Component } from 'react';
-import { Scene } from 'aframe-react';
+import { Entity, Scene } from 'aframe-react';
 import Camera from './Camera';
 import Text from './Text';
 import Pet from './Pet';
@@ -21,7 +21,13 @@ const PetScene = props => {
       <PetActions
         feed={props.feed}
         play={props.play}/>
-      <PetStats stats={props.pet.stats}/>
+      <PetStats
+        stats={props.pet.stats}/>
+      <Entity
+        geometry={{primitive: 'circle', radius: 20}}
+        position={{y: -1, z: -5}}
+        rotation={{x: -90}}
+        material={{color: 'green'}}/>
     </Scene>
   )
 }
