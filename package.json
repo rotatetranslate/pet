@@ -25,6 +25,6 @@
   "scripts": {
     "seed": "node server/db/seed.js",
     "start": "nodemon server",
-    "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
   }
 }
