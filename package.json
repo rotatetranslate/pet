@@ -1,8 +1,11 @@
 {
-  "name": "server",
+  "name": "virtua pet",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "7.x"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
