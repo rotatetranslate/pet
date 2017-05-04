@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^1.0.2",
@@ -15,8 +15,13 @@
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0"
   },
+  "cacheDirectories": [
+   "node_modules",
+   "client/node_modules"
+ ],
   "scripts": {
-    "start": "nodemon server.js",
-    "seed": "node ./db/seed.js"
+    "seed": "node server/db/seed.js",
+    "start": "nodemon server",
+    "heroku-postbuild": "cd client/ && npm install --only=dev && npm install && npm run build"
   }
 }
