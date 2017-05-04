@@ -17,7 +17,7 @@ const Pet = ({text}) => {
     // </Entity>
     <Entity
       // obj-model={{obj: 'http://localhost:3000/ballerina.obj', mtl: 'http://localhost:3000/ballerina.mtl'}}
-      obj-model={{obj: url('/ballerina.obj'), mtl: url('/ballerina.mtl')}}
+      obj-model={{obj: 'url(/ballerina.obj)', mtl: 'url(/ballerina.mtl)'}}
       position={{x: -1, y: 0, z: -3}}
       scale={{x: .075, y: .075, z: .075}}
       rotation={{y: -90}}>
