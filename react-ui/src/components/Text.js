@@ -16,10 +16,12 @@ class Text extends Component {
   render() {
     return (
       <Entity
-        text-geometry={{value: this.state.say, font: 'http://localhost:3000/bubble1.json', size: 4}}
+        // text-geometry={{value: this.state.say, font: 'http://localhost:3000/bubble1.json', size: 4}}
+        text-geometry={{value: this.state.say, font: url('/bubble1.json'), size: 4}}
         position={this.props.position}
         rotation={{y: 90}}
-        sound={{src: 'http://localhost:3000/talk_1.mp3', on: 'componentchanged', volume: 8, poolSize: 1}}
+        // sound={{src: 'http://localhost:3000/talk_1.mp3', on: 'componentchanged', volume: 8, poolSize: 1}}
+        sound={{src: url('/talk_1.mp3'), on: 'componentchanged', volume: 8, poolSize: 1}}
         // _ref = {(el) => el.setAttribute('text-geometry', {value: 'test'})}
       />
     )
