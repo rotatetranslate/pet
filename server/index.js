@@ -21,7 +21,7 @@ const authRoutes = require('./routes/auth');
 const petRoutes = require('./routes/pet');
 
 app.get('/*', (req, res) => {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+   res.sendFile(path.join(__dirname, '../react-ui/build', 'index.html'));
  });
 
 app.use('/auth', authRoutes);
