@@ -10,7 +10,8 @@ class App extends Component {
     super()
     this.state = {
       user: null,
-      pet: null
+      pet: null,
+      text: ['Hello World', 'test?', 'im hungry', 'etc.']
     }
     this.feed = this.feed.bind(this);
     this.play = this.play.bind(this);
@@ -18,6 +19,8 @@ class App extends Component {
     this.sleep = this.sleep.bind(this);
     this.cycle = this.cycle.bind(this);
     this.updatePet = this.updatePet.bind(this);
+    this.finishedPhrase = this.finishedPhrase.bind(this);
+
   }
 
   componentDidMount() {
@@ -35,7 +38,9 @@ class App extends Component {
         user={this.state.user}
         pet={this.state.pet}
         feed={this.feed}
-        play={this.play}/> :
+        play={this.play}
+        text={this.state.text}
+        finishedPhrase={this.finishedPhrase}/> :
       null
   }
 
@@ -103,9 +108,10 @@ class App extends Component {
     }, 5000)
   }
 
-  // cycleChance() {
-  //   let chances = [0, 0, 0].map(chance => randInt(0, 100) <= 75 ? 1 : 0);
-  // }
+  finishedPhrase() {
+    let updatedText = update(this.state.text, {$splice: [[0, 1]]});
+    this.setState({text: updatedText});
+  }
 
   updatePet() {
     fetch('/pet/update/', {

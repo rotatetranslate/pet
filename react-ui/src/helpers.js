@@ -20,20 +20,19 @@ function getPetsFromJwt(cb) {
 }
 
 function formatDate(d) {
-  let mo = d.getMonth();
+  let mo = d.getMonth() + 1;
   let day = d.getDate();
   let yr = d.getFullYear();
   let hrs = d.getHours();
-  let suffix = 'am';
-  if (hrs > 12) {
-    hrs-= 12;
-    suffix = 'pm';
-  }
   let min = d.getMinutes();
+  let suffix = hrs >= 12 ? 'pm' : 'am';
+  if (hrs === 0 || hrs === 12) {
+    hrs -= 12;
+  }
   if (min.toString().length < 2) {
     min = `0${min}`;
   }
-  return `${mo}-${day}-${yr} ${hrs}:${min} ${suffix}`;
+  return `${mo}-${day}-${yr} ${Math.abs(hrs)}:${min} ${suffix}`;
 }
 
 module.exports = {

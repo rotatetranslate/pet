@@ -5,7 +5,7 @@ import Text from './Text';
 // import petModel from './../assets/models/ballerina.obj';
 // import petMaterial from './../assets/models/ballerina.mtl';
 
-const Pet = ({text}) => {
+const Pet = ({text, finishedPhrase}) => {
   return (
     // <Entity
     //   material={{color: '#4CC3D9'}}
@@ -23,7 +23,8 @@ const Pet = ({text}) => {
       rotation={{y: -90}}>
       <Text
         position={{x: -15, y: 12, z: -15}}
-        text={text} />
+        text={text}
+        finishedPhrase={finishedPhrase}/>
     </Entity>
   )
 }

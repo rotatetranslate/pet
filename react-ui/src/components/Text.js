@@ -31,12 +31,20 @@ class Text extends Component {
     this.speak();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props != nextProps && nextProps.text[0]) {
+      setTimeout(() => {
+        this.speak();
+      }, 400)
+    }
+  }
+
   speak(i = 1) {
-    let nextChar = this.props.text.slice(0, i);
-    if (i === this.props.text.length + 1) {
+    let nextChar = this.props.text[0].slice(0, i);
+    if (i === this.props.text[0].length + 1) {
       return setTimeout(() => {
-        this.setState({say: ''})
-      }, 5000);
+        this.setState({say: ''}, () => this.props.finishedPhrase());
+      }, 4000);
     } else {
       return this.setState({say: nextChar}, () => {
         setTimeout(() => {
