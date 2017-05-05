@@ -6,19 +6,6 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getPetsFromJwt(cb) {
-  let token = sessionStorage.getItem('petToken');
-  fetch('/auth/jwt', {
-    method: 'post',
-    headers: {
-      'Authorization': `JWT ${token}`
-    }
-  })
-  .then(res => res.json())
-  .then(petData => cb(petData))
-  .catch(err => console.log(err));
-}
-
 function formatDate(d) {
   let mo = d.getMonth() + 1;
   let day = d.getDate();
@@ -35,6 +22,22 @@ function formatDate(d) {
   return `${mo}-${day}-${yr} ${Math.abs(hrs)}:${min} ${suffix}`;
 }
 
+async function getPetsFromJwt() {
+  let token = sessionStorage.getItem('petToken');
+  try {
+    let res = await fetch('/auth/jwt', {
+      method: 'post',
+      headers: {
+        'Authorization': `JWT ${token}`
+      }
+    });
+    let petData = await res.json();
+    return petData;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 async function currentLocation() {
   const getLocation = () => new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -47,26 +50,38 @@ async function currentLocation() {
   }
 }
 
-function currentWeather(location, cb) {
-  let {latitude, longitude} = location.coords;
-  fetch('/pet/weather', {
-    method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({lat: latitude, lng: longitude})
-  })
-  .then(res => res.json())
-  .then(weatherData => cb(weatherData))
-  .catch(err => console.log(err));
+async function currentWeather(location) {
+  let {latitude: lat, longitude: lng} = location.coords;
+  try {
+    let res = await fetch('/pet/weather', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({lat: lat, lng: lng})
+    });
+    let weatherData = await res.json();
+    return weatherData;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+async function getWeather() {
+  try {
+    let location = await currentLocation();
+    let weather = await currentWeather(location);
+    return weather;
+  } catch(err) {
+    console.log(err);
+  }
 }
 
 module.exports = {
   randFloat,
   randInt,
-  getPets: getPetsFromJwt,
   formatDate,
-  currentLocation,
-  currentWeather
+  getPets: getPetsFromJwt,
+  getWeather
 }

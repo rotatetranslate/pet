@@ -19,7 +19,9 @@ class SelectPetForm extends Component {
   }
 
   componentDidMount() {
-    getPets(data => this.setState({pets: data.pets}))
+    getPets().then(petData => {
+      this.setState({pets: petData.pets})
+    });
   }
 
   render() {

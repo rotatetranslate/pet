@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import update from 'immutability-helper';
-import { randFloat, randInt, getPets, currentLocation, currentWeather } from './helpers';
+import { randFloat, randInt, getPets, getWeather } from './helpers';
 
 import PetScene from './components/PetScene';
 
@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       user: null,
       pet: null,
-      text: ['Hello World', 'test?', 'im hungry', 'etc.']
+      text: ['Hello World', 'test?', 'im hungry', 'etc.'],
+      weather: null
     }
     this.feed = this.feed.bind(this);
     this.play = this.play.bind(this);
@@ -23,15 +24,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    currentLocation().then(loc => {
-      currentWeather(loc, weather => console.log('weather', weather))
+    getWeather().then(weather => {
+      this.setState({weather: weather.currently.summary});
     });
-    getPets(data => this.setState({
-      user: data.user,
-      pet: data.pets.find(pet => pet._id === this.props.match.params.id)
-    }, () => setTimeout(() => {
-      // this.cycle()
-    }, 5000)));
+    getPets().then(petData => {
+      this.setState({
+        user: petData.user,
+        pet: petData.pets.find(pet => pet._id === this.props.match.params.id)
+      });
+    });
   }
 
   render() {
@@ -115,18 +116,21 @@ class App extends Component {
     this.setState({text: updatedText});
   }
 
-  updatePet() {
-    fetch('/pet/update/', {
-      method: 'put',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({pet: this.state.pet})
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+  async updatePet() {
+    try {
+      let res = await fetch('/pet/update/', {
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({pet: this.state.pet})
+      });
+      let pet = await res.json();
+      return pet;
+    } catch(err) {
+      console.log(err);
+    }
   }
 
 }
