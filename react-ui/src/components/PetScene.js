@@ -1,5 +1,6 @@
 import 'aframe';
 import 'aframe-text-geometry-component';
+import 'aframe-rain';
 import React, { Component } from 'react';
 import { Entity, Scene } from 'aframe-react';
 import Camera from './Camera';
@@ -9,8 +10,9 @@ import PetActions from './PetActions';
 import PetStats from './PetStats';
 
 const PetScene = props => {
+  let rain = props.weather && props.weather.includes('Rain') ? 5000 : 0;
   return (
-    <Scene>
+    <Scene rain={{count: rain}}>
       <Camera>
         <a-cursor>
         </a-cursor>

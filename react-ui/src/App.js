@@ -43,7 +43,8 @@ class App extends Component {
         feed={this.feed}
         play={this.play}
         text={this.state.text}
-        finishedPhrase={this.finishedPhrase}/> :
+        finishedPhrase={this.finishedPhrase}
+        weather={this.state.weather} /> :
       null
   }
 
