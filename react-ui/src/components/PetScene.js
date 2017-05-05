@@ -17,7 +17,6 @@ const PetScene = props => {
       </Camera>
       <Pet
         pet={props.pet}
-        // text={`Hello ${props.user}. How are u?`}/>
         text={props.text}
         finishedPhrase={props.finishedPhrase}/>
       <PetActions

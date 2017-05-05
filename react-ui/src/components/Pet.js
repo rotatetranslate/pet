@@ -7,16 +7,7 @@ import Text from './Text';
 
 const Pet = ({text, finishedPhrase}) => {
   return (
-    // <Entity
-    //   material={{color: '#4CC3D9'}}
-    //   geometry={{primitive: 'sphere', radius: 1}}
-    //   position={{x: -1, y: .5, z: -5}} >
-    //   <Text
-    //     position={{x: 1, y: .5}}
-    //     text={text} />
-    // </Entity>
     <Entity
-      // obj-model={{obj: 'http://localhost:3000/ballerina.obj', mtl: 'http://localhost:3000/ballerina.mtl'}}
       obj-model={{obj: 'url(/ballerina.obj)', mtl: 'url(/ballerina.mtl)'}}
       position={{x: -1, y: 0, z: -3}}
       scale={{x: .075, y: .075, z: .075}}
@@ -24,7 +15,7 @@ const Pet = ({text, finishedPhrase}) => {
       <Text
         position={{x: -15, y: 12, z: -15}}
         text={text}
-        finishedPhrase={finishedPhrase}/>
+        finishedPhrase={finishedPhrase} />
     </Entity>
   )
 }

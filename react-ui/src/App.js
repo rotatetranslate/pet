@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import update from 'immutability-helper';
-import { randFloat, randInt, getPets } from './helpers';
+import { randFloat, randInt, getPets, currentLocation, currentWeather } from './helpers';
 
 import PetScene from './components/PetScene';
 
@@ -20,10 +20,12 @@ class App extends Component {
     this.cycle = this.cycle.bind(this);
     this.updatePet = this.updatePet.bind(this);
     this.finishedPhrase = this.finishedPhrase.bind(this);
-
   }
 
   componentDidMount() {
+    currentLocation().then(loc => {
+      currentWeather(loc, weather => console.log('weather', weather))
+    });
     getPets(data => this.setState({
       user: data.user,
       pet: data.pets.find(pet => pet._id === this.props.match.params.id)

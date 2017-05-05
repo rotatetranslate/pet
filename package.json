@@ -14,14 +14,15 @@
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
+    "node-fetch": "^1.6.3",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0"
   },
   "cacheDirectories": [
-   "node_modules",
-   "client/node_modules"
- ],
+    "node_modules",
+    "client/node_modules"
+  ],
   "scripts": {
     "seed": "node server/db/seed.js",
     "start": "node server",

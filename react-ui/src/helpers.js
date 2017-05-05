@@ -15,8 +15,8 @@ function getPetsFromJwt(cb) {
     }
   })
   .then(res => res.json())
-  .then(data => cb(data))
-  .catch(err => console.log(err))
+  .then(petData => cb(petData))
+  .catch(err => console.log(err));
 }
 
 function formatDate(d) {
@@ -29,15 +29,44 @@ function formatDate(d) {
   if (hrs === 0 || hrs === 12) {
     hrs -= 12;
   }
-  if (min.toString().length < 2) {
+  if (min <= 9) {
     min = `0${min}`;
   }
   return `${mo}-${day}-${yr} ${Math.abs(hrs)}:${min} ${suffix}`;
+}
+
+async function currentLocation() {
+  const getLocation = () => new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+  try {
+    let location = await getLocation();
+    return location;
+  } catch(err) {
+    throw err;
+  }
+}
+
+function currentWeather(location, cb) {
+  let {latitude, longitude} = location.coords;
+  fetch('/pet/weather', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({lat: latitude, lng: longitude})
+  })
+  .then(res => res.json())
+  .then(weatherData => cb(weatherData))
+  .catch(err => console.log(err));
 }
 
 module.exports = {
   randFloat,
   randInt,
   getPets: getPetsFromJwt,
-  formatDate
+  formatDate,
+  currentLocation,
+  currentWeather
 }
