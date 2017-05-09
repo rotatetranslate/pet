@@ -10,9 +10,10 @@ import PetActions from './PetActions';
 import PetStats from './PetStats';
 
 const PetScene = props => {
-  let rain = props.weather && props.weather.includes('Rain') ? 5000 : 0;
+  // let rain = props.weather && props.weather.includes('Rain') ? 5000 : 0;
   return (
-    <Scene rain={{count: rain}}>
+    // <Scene rain={{count: rain}}>
+    <Scene rain={{count: 0}}>
       <Camera>
         <a-cursor>
         </a-cursor>

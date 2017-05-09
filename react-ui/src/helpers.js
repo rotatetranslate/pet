@@ -63,6 +63,9 @@ async function currentWeather(location) {
     });
     let weatherData = await res.json();
     return weatherData;
+    // weatherData.currently.cloudCover: 0 - 1 for % of sky covered by clouds
+    // weatherData.currently.precipIntensity: inches of water per hour
+    // watherData.currently.icon === fog ? make it foggy
   } catch(err) {
     console.log(err);
   }
@@ -72,10 +75,14 @@ async function getWeather() {
   try {
     let location = await currentLocation();
     let weather = await currentWeather(location);
-    return weather;
+    return weather.currently;
   } catch(err) {
     console.log(err);
   }
+}
+
+function extractPropsFromObj(obj, ...props) {
+  return Object.assign({}, ...props.map(prop => ({[prop]: obj[prop]})))
 }
 
 module.exports = {
@@ -83,5 +90,6 @@ module.exports = {
   randInt,
   formatDate,
   getPets: getPetsFromJwt,
-  getWeather
+  getWeather,
+  extract: extractPropsFromObj
 }

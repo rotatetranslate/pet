@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import update from 'immutability-helper';
-import { randFloat, randInt, getPets, getWeather } from './helpers';
+import { randFloat, randInt, getPets, getWeather, extract } from './helpers';
 
 import PetScene from './components/PetScene';
 
@@ -24,13 +24,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getWeather().then(weather => {
-      this.setState({weather: weather.currently.summary});
+    getWeather().then(w => {
+      let weather = extract(w, 'icon', 'summary', 'cloudCover', 'precipIntensity');
+      this.setState({weather});
     });
-    getPets().then(petData => {
+    getPets().then(({user, pets}) => {
       this.setState({
-        user: petData.user,
-        pet: petData.pets.find(pet => pet._id === this.props.match.params.id)
+        user,
+        pet: pets.find(pet => pet._id === this.props.match.params.id)
       });
     });
   }
