@@ -32,7 +32,7 @@ class App extends Component {
       this.setState({
         user,
         pet: pets.find(pet => pet._id === this.props.match.params.id)
-      });
+      }, () => setTimeout(() => {this.cycle()}, 5000));
     });
   }
 
@@ -96,21 +96,29 @@ class App extends Component {
   }
 
   // every minute
+  // increment age
   // check weight to determine stage/asset
   // 0 - 20 child, 20 - 50 teen, 50 + adult
-  //  75% chance to remove 1 energy, fullness, happiness
+  // 66% chance to remove 1 energy, fullness, happiness
   cycle() {
-    let chances = [0, 0, 0].map(chance => randInt(0, 100) <= 75 ? 1 : 0);
+    const lowerStat = x => {
+      if (x >= 1) {
+        return randInt(0, 100) <= 66 ? x - 1 : x;
+      } else {
+        return x;
+      }
+    }
+
     let updatedPet = update(this.state.pet, {
-      stats: {happiness: {$apply: x => x - chances[0]},
-              energy: {$apply: y => y - chances[1]},
-              fullness: {$apply: z => z - chances[2]}}
+      age: {$apply: x => x + 1},
+      stats: {happiness: {$apply: lowerStat},
+              energy: {$apply: lowerStat},
+              fullness: {$apply: lowerStat}}
     });
-    console.log('chances', chances);
-    this.setState({pet: updatedPet}, () => this.updatePet());
-    setTimeout(() => {
-      this.cycle();
-    }, 5000)
+
+    this.setState({pet: updatedPet}, () => {
+      this.updatePet().then(setTimeout(this.cycle, 5000))
+    });
   }
 
   finishedPhrase() {

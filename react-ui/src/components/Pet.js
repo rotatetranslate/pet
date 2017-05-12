@@ -8,7 +8,8 @@ import Text from './Text';
 const Pet = ({text, finishedPhrase}) => {
   return (
     <Entity
-      obj-model={{obj: 'url(/ballerina.obj)', mtl: 'url(/ballerina.mtl)'}}
+      // obj-model={{obj: 'url(/ballerina.obj)', mtl: 'url(/ballerina.mtl)'}}
+      obj-model={{obj: 'url(/models/ballerina.obj)', mtl: 'url(/models/ballerina.mtl)'}}
       position={{x: -1, y: 0, z: -3}}
       scale={{x: .075, y: .075, z: .075}}
       rotation={{y: -90}}>
