@@ -1,5 +1,4 @@
 import 'aframe';
-import 'aframe-text-geometry-component';
 import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
 import update from 'immutability-helper';
@@ -16,9 +15,9 @@ class Text extends Component {
   render() {
     return (
       <Entity
-        text-geometry={{value: this.state.say, font: 'url(/fonts/wakuwaku.json)', size: this.props.size}}
+        text-geometry={{value: this.state.say, font: '#waku', size: this.props.size}}
         position={this.props.position}
-        sound={{src: 'url(/sounds/talk_1.mp3)', on: 'componentchanged', volume: 8, poolSize: 1}} />
+        sound={{src: '#talk-click', on: 'componentchanged', volume: 8, poolSize: 1}} />
     )
   }
 
