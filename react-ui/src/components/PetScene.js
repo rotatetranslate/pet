@@ -29,7 +29,7 @@ const PetScene = props => {
         stats={props.pet.stats}/>
       <Entity
         geometry={{primitive: 'circle', radius: 20}}
-        position={{y: -1, z: -5}}
+        position={{y: 0, z: -5}}
         rotation={{x: -90}}
         material={{color: 'green'}}/>
     </Scene>

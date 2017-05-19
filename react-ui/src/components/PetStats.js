@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
 import Stat from './Stat';
 
-// const PetStats = ({stats}) => {
-//   return (
-//     <Entity position={{x: 1, y: 0, z: -6}}>
-//       <Stat position={{z: -6}}/>
-//     </Entity>
-//   )
-// }
-
 class PetStats extends Component {
   constructor() {
     super()
@@ -19,7 +11,7 @@ class PetStats extends Component {
   render() {
     let formattedStats = this.formatStats(this.props);
     return (
-      <Entity position={{x: 1, y: 3, z: -6}}>
+      <Entity position={{x: 1, y: 3, z: -5}}>
         {formattedStats}
       </Entity>
     )

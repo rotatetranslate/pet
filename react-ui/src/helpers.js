@@ -85,11 +85,26 @@ function extractPropsFromObj(obj, ...props) {
   return Object.assign({}, ...props.map(prop => ({[prop]: obj[prop]})))
 }
 
+const phrases = {
+  feed: ['yum!!', 'i want more!', 'that was tasty'],
+  hungry: ['feed me !!@', 'F E E D M E', 'i\'m hungry!'],
+  sick: ['i don\'t feel so good...', 'x_x'],
+  unhappy: ['i\'m bored...'],
+  clean: ['ty']
+}
+
+function randPhrase(type) {
+  console.log(phrases[type])
+  return phrases[type][randInt(0, phrases[type].length - 1)];
+}
+
 module.exports = {
   randFloat,
   randInt,
   formatDate,
   getPets: getPetsFromJwt,
   getWeather,
-  extract: extractPropsFromObj
+  extract: extractPropsFromObj,
+  phrases,
+  randPhrase
 }

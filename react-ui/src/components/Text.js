@@ -16,11 +16,9 @@ class Text extends Component {
   render() {
     return (
       <Entity
-        // text-geometry={{value: this.state.say, font: 'url(/bubble1.json)', size: 4}}
-        text-geometry={{value: this.state.say, font: 'url(/fonts/undefined_wakuwaku.json)', size: 4}}
+        text-geometry={{value: this.state.say, font: 'url(/fonts/wakuwaku.json)', size: this.props.size}}
         position={this.props.position}
-        rotation={{y: 90}}
-        sound={{src: 'url(/talk_1.mp3)', on: 'componentchanged', volume: 8, poolSize: 1}} />
+        sound={{src: 'url(/sounds/talk_1.mp3)', on: 'componentchanged', volume: 8, poolSize: 1}} />
     )
   }
 

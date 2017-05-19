@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import update from 'immutability-helper';
-import { randFloat, randInt, getPets, getWeather, extract } from './helpers';
+import { randFloat, randInt, getPets, getWeather, extract, phrases, randPhrase } from './helpers';
 
 import PetScene from './components/PetScene';
 
@@ -21,6 +21,7 @@ class App extends Component {
     this.cycle = this.cycle.bind(this);
     this.updatePet = this.updatePet.bind(this);
     this.finishedPhrase = this.finishedPhrase.bind(this);
+    this.say = this.say.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class App extends Component {
       this.setState({
         user,
         pet: pets.find(pet => pet._id === this.props.match.params.id)
-      }, () => setTimeout(() => {this.cycle()}, 5000));
+      }, () => setTimeout(this.cycle, 60000));
     });
   }
 
@@ -65,7 +66,9 @@ class App extends Component {
         let updatedPet = update(this.state.pet, {
           sick: {$set: true}
         });
-        this.setState({pet: updatedPet}, () => this.updatePet());
+        this.setState({pet: updatedPet}, () => {
+          this.updatePet().then(this.say(randPhrase('sick')));
+        });
       }
     }
   }
@@ -108,7 +111,7 @@ class App extends Component {
         return x;
       }
     }
-
+    
     let updatedPet = update(this.state.pet, {
       age: {$apply: x => x + 1},
       stats: {happiness: {$apply: lowerStat},
@@ -117,8 +120,13 @@ class App extends Component {
     });
 
     this.setState({pet: updatedPet}, () => {
-      this.updatePet().then(setTimeout(this.cycle, 5000))
+      this.updatePet().then(setTimeout(this.cycle, 60000));
     });
+  }
+
+  say(phrase) {
+    let updatedText = update(this.state.text, {$push: [phrase]});
+    this.setState({text: updatedText});
   }
 
   finishedPhrase() {
