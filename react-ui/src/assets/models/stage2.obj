@@ -1,7 +1,7 @@
 # MagicaVoxel @ Ephtracy
 
 # material
-mtllib ballerina.mtl
+mtllib stage2.mtl
 usemtl palette
 
 # normals

@@ -94,8 +94,13 @@ const phrases = {
 }
 
 function randPhrase(type) {
-  console.log(phrases[type])
   return phrases[type][randInt(0, phrases[type].length - 1)];
+}
+
+function wait(seconds) {
+  return new Promise(resolve => {
+    setTimeout(resolve, 1000 * seconds)
+  })
 }
 
 module.exports = {
@@ -106,5 +111,6 @@ module.exports = {
   getWeather,
   extract: extractPropsFromObj,
   phrases,
-  randPhrase
+  randPhrase,
+  wait
 }

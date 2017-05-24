@@ -104,6 +104,11 @@ class App extends Component {
   // 0 - 20 child, 20 - 50 teen, 50 + adult
   // 66% chance to remove 1 energy, fullness, happiness
   cycle() {
+  
+    // if (age === 0) {
+    //   hatch()
+    // }
+
     const lowerStat = x => {
       if (x >= 1) {
         return randInt(0, 100) <= 66 ? x - 1 : x;
@@ -111,7 +116,7 @@ class App extends Component {
         return x;
       }
     }
-    
+
     let updatedPet = update(this.state.pet, {
       age: {$apply: x => x + 1},
       stats: {happiness: {$apply: lowerStat},

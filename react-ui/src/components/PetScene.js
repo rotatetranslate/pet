@@ -16,16 +16,20 @@ const PetScene = props => {
     <Scene rain={{count: 0}}>
 
       <a-assets>
+        <audio id="talk-click" src="/sounds/talk_1.mp3"></audio>
         <a-asset-item id="waku" src="/fonts/wakuwaku.json"></a-asset-item>
-        <a-asset-item id="ballerina-obj" src="/models/ballerina.obj"></a-asset-item>
-        <a-asset-item id="ballerina-mtl" src="/models/ballerina.mtl"></a-asset-item>
         <a-asset-item id="energy-obj" src="/models/energy.obj"></a-asset-item>
         <a-asset-item id="energy-mtl" src="/models/energy.mtl"></a-asset-item>
         <a-asset-item id="fullness-obj" src="/models/fullness.obj"></a-asset-item>
         <a-asset-item id="fullness-mtl" src="/models/fullness.mtl"></a-asset-item>
         <a-asset-item id="happiness-obj" src="/models/happiness.obj"></a-asset-item>
         <a-asset-item id="happiness-mtl" src="/models/happiness.mtl"></a-asset-item>
-        <audio id="talk-click" src="/sounds/talk_1.mp3"></audio>
+        <a-asset-item id="stage0-obj" src="/models/stage0.obj"></a-asset-item>
+        <a-asset-item id="stage0-mtl" src="/models/stage0.mtl"></a-asset-item>
+        <a-asset-item id="stage1-obj" src="/models/stage1.obj"></a-asset-item>
+        <a-asset-item id="stage1-mtl" src="/models/stage1.mtl"></a-asset-item>
+        <a-asset-item id="stage2-obj" src="/models/stage2.obj"></a-asset-item>
+        <a-asset-item id="stage2-mtl" src="/models/stage2.mtl"></a-asset-item>
       </a-assets>
 
       <Camera>
@@ -34,7 +38,6 @@ const PetScene = props => {
       </Camera>
 
       <Pet
-        sound={'#talk-click'}
         pet={props.pet}
         text={props.text}
         finishedPhrase={props.finishedPhrase}/>

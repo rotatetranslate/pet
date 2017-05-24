@@ -2,6 +2,7 @@ import 'aframe';
 import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
 import update from 'immutability-helper';
+import { wait } from './../helpers';
 
 class Text extends Component {
   constructor() {
@@ -27,23 +28,19 @@ class Text extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.text[0] && this.props.text != nextProps.text) {
-      setTimeout(() => {
-        this.speak();
-      }, 400);
+      return wait(.4).then(() => this.speak())
     }
   }
 
   speak(i = 1) {
     let nextChar = this.props.text[0].slice(0, i);
     if (i === this.props.text[0].length + 1) {
-      return setTimeout(() => {
+      return wait(4).then(() => {
         this.setState({say: ''}, () => this.props.finishedPhrase());
-      }, 4000);
+      })
     } else {
       return this.setState({say: nextChar}, () => {
-        setTimeout(() => {
-          this.speak(i + 1);
-        }, 100);
+        wait(.1).then(() => this.speak(i + 1))
       });
     }
   }

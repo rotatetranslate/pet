@@ -6,7 +6,7 @@ const PetSchema = new mongoose.Schema({
   name: String,
   age: {type: Number, default: 0},
   weight: {type: Number, default: () => ((Math.random() * 2) + 1).toFixed(1)}, // birthed at random weight between 1-3
-  stage: {type: Number, min: 0, max: 4, default: 0}, // egg, child, teen, senior
+  stage: {type: Number, min: 0, max: 3, default: 0}, // egg, child, teen, senior
   alive: {type: Boolean, default: true},
   sleeping: {type: Boolean, default: false},
   sick: {type: Boolean, default: false},
