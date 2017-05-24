@@ -86,11 +86,14 @@ function extractPropsFromObj(obj, ...props) {
 }
 
 const phrases = {
-  feed: ['yum!!', 'i want more!', 'that was tasty'],
-  hungry: ['feed me !!@', 'F E E D M E', 'i\'m hungry!'],
+  feed: ['yum!!', 'i want more!', 'that was tasty', '<3 burgs', 'i love burgs', 'burgs are my favorite food', 'burgs are so nutritious'],
+  hungry: ['feed me !!@', 'F E E D M E', 'i\'m hungry!', 'i neED a burg'],
   sick: ['i don\'t feel so good...', 'x_x'],
-  unhappy: ['i\'m bored...'],
-  clean: ['ty']
+  unhappy: ['i\'m bored...', 'give me attention', 'play with me !'],
+  dirty: ['clean this up', 'i\'m living in filth', 'clean this, peasant', '>:('],
+  clean: ['ty', 'thank you'],
+  likesYou: ['i love u', 'i love you', '..................', 'how is your day going?', 'do you love me?'],
+  dislikesYou: ['i hate you', 'i h8 u!!@', 'you\'re a terrible parent']
 }
 
 function randPhrase(type) {

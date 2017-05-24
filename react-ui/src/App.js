@@ -104,7 +104,7 @@ class App extends Component {
   // 0 - 20 child, 20 - 50 teen, 50 + adult
   // 66% chance to remove 1 energy, fullness, happiness
   cycle() {
-  
+
     // if (age === 0) {
     //   hatch()
     // }
@@ -125,7 +125,7 @@ class App extends Component {
     });
 
     this.setState({pet: updatedPet}, () => {
-      this.updatePet().then(setTimeout(this.cycle, 60000));
+      // this.updatePet().then(setTimeout(this.cycle, 60000));
     });
   }
 

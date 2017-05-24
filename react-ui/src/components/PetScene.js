@@ -4,7 +4,7 @@ import 'aframe-rain';
 import React, { Component } from 'react';
 import { Entity, Scene } from 'aframe-react';
 import Camera from './Camera';
-import Text from './Text';
+import ScrollingText from './ScrollingText';
 import Pet from './Pet';
 import PetActions from './PetActions';
 import PetStats from './PetStats';
@@ -17,7 +17,7 @@ const PetScene = props => {
 
       <a-assets>
         <audio id="talk-click" src="/sounds/talk_1.mp3"></audio>
-        <a-asset-item id="waku" src="/fonts/wakuwaku.json"></a-asset-item>
+        <a-asset-item id="waku3d" src="/fonts/wakuwaku.json"></a-asset-item>
         <a-asset-item id="energy-obj" src="/models/energy.obj"></a-asset-item>
         <a-asset-item id="energy-mtl" src="/models/energy.mtl"></a-asset-item>
         <a-asset-item id="fullness-obj" src="/models/fullness.obj"></a-asset-item>

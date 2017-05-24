@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
-import Text from './Text';
+import ScrollingText from './ScrollingText';
 
 const Pet = ({text, finishedPhrase, pet}) => {
   return (
@@ -10,7 +10,7 @@ const Pet = ({text, finishedPhrase, pet}) => {
       scale={{x: .075, y: .075, z: .075}}
       // animation={animation}
       >
-      <Text
+      <ScrollingText
         position={{x: 17, y: 12, z: -5}}
         text={text}
         finishedPhrase={finishedPhrase}

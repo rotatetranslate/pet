@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Entity } from 'aframe-react';
 import Stat from './Stat';
+import StationaryText from './StationaryText';
 
 class PetStats extends Component {
   constructor() {
@@ -11,21 +12,39 @@ class PetStats extends Component {
   render() {
     let formattedStats = this.formatStats(this.props);
     return (
-      <Entity position={{x: 1, y: 3, z: -5}}>
+      <Entity
+        // geometry={{primitive: 'box', depth: .5, height: 5, width: 5}}
+        // material={{color: 'black'}}
+        position={{x: 1, y: 3, z: -5}}>
         {formattedStats}
       </Entity>
     )
   }
 
   formatStats({stats}) {
-    let keys = Object.keys(stats);
-    let formattedStats = [];
+    const keys = Object.keys(stats);
+    const formattedStats = [];
     for (let i = 0; i < keys.length; i++) {
+      formattedStats.push(
+        <StationaryText
+          value={keys[i]}
+          position={{x: i - .3}}
+          color={'black'}
+          size={.16}
+          key={keys[i]} />
+      );
+      // formattedStats.push(
+      //   <Entity
+      //     text={{value: keys[i], font: '#waku', color: 'black', wrapCount: 8}}
+      //     position={{x: i + .1}}
+      //     key={keys[i]} />);
       for (let j = 0; j < stats[keys[i]]; j++) {
-        let pos = {x: 0, y: 0, z: 0}
-        pos.x += i;
-        pos.y += j;
-        formattedStats.push(<Stat type={keys[i]} position={pos} key={`${i}${j}`}/>);
+        formattedStats.push(
+          <Stat
+            type={keys[i]}
+            position={{x: i, y: .5 + j}}
+            key={`${i}${j}`}/>
+          );
       }
     }
     return formattedStats;

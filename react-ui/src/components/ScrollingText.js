@@ -4,7 +4,7 @@ import { Entity } from 'aframe-react';
 import update from 'immutability-helper';
 import { wait } from './../helpers';
 
-class Text extends Component {
+class ScrollingText extends Component {
   constructor() {
     super()
     this.state = {
@@ -16,7 +16,7 @@ class Text extends Component {
   render() {
     return (
       <Entity
-        text-geometry={{value: this.state.say, font: '#waku', size: this.props.size}}
+        text-geometry={{value: this.state.say, font: '#waku3d', size: this.props.size}}
         position={this.props.position}
         sound={{src: '#talk-click', on: 'componentchanged', volume: 8, poolSize: 1}} />
     )
@@ -47,4 +47,4 @@ class Text extends Component {
 
 }
 
-export default Text;
+export default ScrollingText;
