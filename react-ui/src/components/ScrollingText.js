@@ -14,11 +14,15 @@ class ScrollingText extends Component {
   }
 
   render() {
+    let {size, position, color} = this.props
     return (
       <Entity
-        text-geometry={{value: this.state.say, font: '#waku3d', size: this.props.size}}
-        position={this.props.position}
-        sound={{src: '#talk-click', on: 'componentchanged', volume: 8, poolSize: 1}} />
+        text-geometry={{value: this.state.say, size, font: '#waku3d'}}
+        position={position}
+        sound={{src: '#talk-click', on: 'componentchanged', volume: 8, poolSize: 2}}
+        material={{color}}
+        scale={{z: 0}}
+       />
     )
   }
 

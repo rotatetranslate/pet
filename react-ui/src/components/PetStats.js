@@ -28,8 +28,8 @@ class PetStats extends Component {
       formattedStats.push(
         <StationaryText
           value={keys[i]}
-          position={{x: i - .3}}
-          color={'black'}
+          position={{x: i - .4}}
+          color={'#D1AEA7'}
           size={.16}
           key={keys[i]} />
       );

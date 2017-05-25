@@ -7,7 +7,8 @@ const StationaryText = ({value, position, color, size}) => {
     <Entity
       text-geometry={{value, size, font: '#waku3d'}}
       position={position}
-      material={{color}}/>
+      material={{color}}
+    />
   )
 }
 
