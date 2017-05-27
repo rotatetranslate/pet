@@ -13,8 +13,6 @@ class PetStats extends Component {
     let formattedStats = this.formatStats(this.props);
     return (
       <Entity
-        // geometry={{primitive: 'box', depth: .5, height: 5, width: 5}}
-        // material={{color: 'black'}}
         position={{x: 1, y: 3, z: -5}}>
         {formattedStats}
       </Entity>
@@ -33,11 +31,6 @@ class PetStats extends Component {
           size={.16}
           key={keys[i]} />
       );
-      // formattedStats.push(
-      //   <Entity
-      //     text={{value: keys[i], font: '#waku', color: 'black', wrapCount: 8}}
-      //     position={{x: i + .1}}
-      //     key={keys[i]} />);
       for (let j = 0; j < stats[keys[i]]; j++) {
         formattedStats.push(
           <Stat

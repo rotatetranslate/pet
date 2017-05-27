@@ -32,10 +32,7 @@ const PetScene = props => {
         <a-asset-item id="stage2-mtl" src="/models/stage2.mtl"></a-asset-item>
       </a-assets>
 
-      <Camera>
-        <a-cursor>
-        </a-cursor>
-      </Camera>
+      <Camera />
 
       <Pet
         pet={props.pet}

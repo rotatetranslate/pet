@@ -43,9 +43,9 @@ aframe-animation-component@^3.2.5:
   dependencies:
     animejs "^1.1.0"
 
-aframe-extras@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-3.8.1.tgz#5e8a8de4f69ca68fec19fab28cf76d8a7f922ea5"
+aframe-extras@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/aframe-extras/-/aframe-extras-3.8.3.tgz#31c3e41c6dd7c28b2eeee4bc929360dea72b7dba"
   dependencies:
     aframe-physics-system "^1.4.0"
 

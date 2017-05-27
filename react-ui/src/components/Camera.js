@@ -1,21 +1,22 @@
 import 'aframe';
-import 'aframe-extras';
+import extras from 'aframe-extras';
 import { Entity } from 'aframe-react';
 import React from 'react';
+import 'aframe-animation-component';
 
-const Camera = props => (
-  <Entity
-    primitive="a-camera"
-    look-controls=""
-    wasd-controls="">
-  </Entity>
-);
+extras.controls.registerAll();
 
-// const Camera = props => (
-//   <Entity>
-//     <Entity camera="" look-controls="" wasd-controls="" {...props}/>
-//     <Entity universal-controls={{movementControls: 'mouse'}}/>
-//   </Entity>
-// );
+const Camera = props => {
+  return (
+    <Entity
+      primitive='a-camera'
+      universal-controls>
+      <Entity
+        primitive='a-cursor'
+        animation={{property: 'scale', startEvents: 'click', from: '1 1 1', to: '2 2 2', dur: 200}}
+        />
+    </Entity>
+  )
+}
 
 export default Camera;
