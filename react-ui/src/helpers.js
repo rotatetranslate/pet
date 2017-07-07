@@ -13,7 +13,7 @@ function formatDate(d) {
   let hrs = d.getHours();
   let min = d.getMinutes();
   let suffix = hrs >= 12 ? 'pm' : 'am';
-  if (hrs === 0 || hrs === 12) {
+  if (hrs === 0 || hrs > 12) {
     hrs -= 12;
   }
   if (min <= 9) {
